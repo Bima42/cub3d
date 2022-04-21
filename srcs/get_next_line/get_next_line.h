@@ -6,7 +6,7 @@
 /*   By: tpauvret <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 17:30:48 by tpauvret          #+#    #+#             */
-/*   Updated: 2021/11/20 14:25:10 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/04/21 11:33:52 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <unistd.h>
 # include <string.h>
 # include <fcntl.h>
+
+# define BUFFER_SIZE 10
 
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_substr(char const *s, unsigned int start, size_t len);

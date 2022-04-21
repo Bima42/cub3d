@@ -6,12 +6,11 @@
 /*   By: tpauvret <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 17:30:39 by tpauvret          #+#    #+#             */
-/*   Updated: 2021/12/09 15:52:21 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/04/21 11:24:30 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "../so_long.h"
 
 static int	index_new_line(char *buf);
 static void	clear(char **keep);
