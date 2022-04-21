@@ -6,6 +6,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include "../mlx/mlx.h"
+# include "../srcs/get_next_line/get_next_line.h"
 
 typedef struct s_game
 {
