@@ -11,6 +11,8 @@
 # include "../mlx/mlx.h"
 # include "../srcs/get_next_line/get_next_line.h"
 
+# define WALL 1
+
 typedef struct s_game
 {
 	char					**map;
@@ -39,5 +41,15 @@ typedef struct s_player
 	int	y;
 	int	hp;
 }			t_player;
+
+typedef struct s_parse
+{
+    int fd;
+    int spawn;
+    int wall_err;
+    int path_err;
+    int id_err;
+    int rgb_err;
+}           t_parse;
 
 #endif
