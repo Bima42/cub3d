@@ -44,8 +44,15 @@ int	game_infos(t_game *game, t_parse *control)
 	char	*line;
 
 	line = get_next_line(control->fd);
+	//Check si line ??
 	while (!first_wall_line(line))
 	{
+		while (line[0] == '\n')
+		{
+			free(line);
+			line = get_next_line(control->fd);
+		}
+
 		// recuperer les datas ici, pas oublier de sauter les lignes vides
 		// Il faut penser aussi a verifier la validiter des infos
 		// car la fonction first_wall_line() va laisser passer si le premier
