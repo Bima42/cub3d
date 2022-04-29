@@ -1,4 +1,4 @@
-#include "../inc/cub3d.h"
+#include "../../inc/cub3d.h"
 
 int	is_w_space(char c)
 {
@@ -39,12 +39,47 @@ int	first_wall_line(char *line)
 	// il y a autre chose c'est pas considerer comme un mur
 }
 
+int	collect_data(char *line, t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] != 32)
+		i++;
+	if (!ft_strncmp(line, "NO", i) && game->texture_pack->no->path == NULL)
+		game->texture_pack->no->path = ft_substr(line, i + 1, ft_strlen(line) - i);
+	else if (!ft_strncmp(line, "SO", i) && game->texture_pack->so->path == NULL)
+		game->texture_pack->so->path = ft_substr(line, i + 1, ft_strlen(line) - i);
+	else if (!ft_strncmp(line, "EA", i) && game->texture_pack->ea->path == NULL)
+		game->texture_pack->ea->path = ft_substr(line, i + 1, ft_strlen(line) - i);
+	else if (!ft_strncmp(line, "WE", i) && game->texture_pack->we->path == NULL)
+		game->texture_pack->we->path = ft_substr(line, i + 1, ft_strlen(line) - i);
+	else if (!ft_strncmp(line, "C", i) && game->texture_pack->ceiling->path == NULL)
+		game->texture_pack->ceiling->path = ft_substr(line, i + 1, ft_strlen(line) - i);
+	else if (!ft_strncmp(line, "F", i) && game->texture_pack->floor->path == NULL)
+		game->texture_pack->floor->path = ft_substr(line, i + 1, ft_strlen(line) - i);
+	return (0);
+}
+
+int	check_all_datas(t_game *game)
+{
+	if (game->texture_pack->no->path
+		&& game->texture_pack->so->path
+		&& game->texture_pack->we->path
+		&& game->texture_pack->ea->path
+		&& game->texture_pack->ceiling->path
+		&& game->texture_pack->floor->path)
+		return (1);
+	return (0);
+}
+
 int	game_infos(t_game *game, t_parse *control)
 {
 	char	*line;
 
 	line = get_next_line(control->fd);
-	//Check si line ??
+	if (!line)
+		return (0);
 	while (!first_wall_line(line))
 	{
 		while (line[0] == '\n')
@@ -52,22 +87,20 @@ int	game_infos(t_game *game, t_parse *control)
 			free(line);
 			line = get_next_line(control->fd);
 		}
-
-		// recuperer les datas ici, pas oublier de sauter les lignes vides
-		// Il faut penser aussi a verifier la validiter des infos
-		// car la fonction first_wall_line() va laisser passer si le premier
-		// mur est defect genre : 1111111121111 Dans ce cas elle dira que c'est
-		// pas un mur. donc dans ce while il faut trim la ligne pour garder que
-		// le path et s'assurer que c'est pas un mur rater
-		line = get_next_line(control->fd); // le laisser en last, toujours prendre la ligne et refaire la boucle
+		if (first_wall_line(line))
+			break ;
+		collect_data(line, game);
+		free(line);
+		line = get_next_line(control->fd);
 	}
 	if (!check_all_datas(game))
 		return (0);	// free en partant !
 	game->map[0] = line; // on stock la ligne qui a ete detectee si c'est le premiere wall
+	return (1);
 }
 
 
-int	check_file_format(char *str, char *str2 int start)
+int	check_file_format(char *str, char *str2, int start)
 {
 	// cette fonction c'est un strcmp avec un start point
 	int	i;
@@ -76,7 +109,7 @@ int	check_file_format(char *str, char *str2 int start)
 	while (str[start])
 	{
 		if (str[start] != str2[i])
-			return(str[start] - str2[i]);
+			return (str[start] - str2[i]);
 		else
 		{
 			start++;
@@ -121,6 +154,7 @@ int	parsing(char *path, t_game *game)
 		return (1);
 	if (!game_infos(game, &control))
 		return (1);
-	if (!collect_map())
-		return (1);
+//	if (!collect_map())
+//		return (1);
+	return (0);
 }
