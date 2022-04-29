@@ -10,6 +10,7 @@
 # include <sys/stat.h>
 # include "../mlx/mlx.h"
 # include "../srcs/get_next_line/get_next_line.h"
+# include "../libft/libft.h"
 
 # define WALL 1
 
@@ -51,5 +52,8 @@ typedef struct s_parse
     int id_err;
     int rgb_err;
 }           t_parse;
+
+//PARSING
+int	parsing(char *path, t_game *game);
 
 #endif
