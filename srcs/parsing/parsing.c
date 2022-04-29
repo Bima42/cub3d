@@ -51,7 +51,9 @@ int	collect_data(char *line, t_game *game)
 		game->texture_pack->ceiling->path = ft_substr(line, i + 1, ft_strlen(line) - i);
 	else if (!ft_strncmp(line, "F", i) && game->texture_pack->floor->path == NULL)
 		game->texture_pack->floor->path = ft_substr(line, i + 1, ft_strlen(line) - i);
-	return (0);
+	else
+		return (0);
+	return (1);
 }
 
 int	check_all_datas(t_game *game)
@@ -64,6 +66,75 @@ int	check_all_datas(t_game *game)
 		&& game->texture_pack->floor->path)
 		return (1);
 	return (0);
+}
+
+char	**alloc_n_fill_array(char **tab)
+{
+	char	**ret;
+	int		i;
+
+	i = 0;
+	while (tab[i])
+		i++;
+	ret = malloc(sizeof(char *) * i + 1);
+	i = -1;
+	while (tab[++i])
+		ret[i] = ft_strdup(tab[i]);
+	ret[i] = 0;
+	return (ret);
+}
+
+void	free_array(char **tab)
+{
+	int	i;
+
+	i = -1;
+	while (tab[++i])
+		free(tab[i]);
+	free(tab);
+}
+
+void	dup_array(char **tab, char **tmp)
+{
+	int	i;
+
+	i = 0;
+	while (tmp[i])
+	{
+		tab[i] = ft_strdup(tmp[i]);
+		i++;
+	}
+	if (tmp)
+		free_array(tmp);
+}
+
+char	**collect_map(char *line, int fd)
+{
+	char	**tab;
+	char	**tmp;
+	int		row;
+
+	row = 0;
+	tmp = NULL;
+	tab = NULL;
+	while (line)
+	{
+		if (tab)
+		{
+			tmp = alloc_n_fill_array(tab);
+			free_array(tab);
+		}
+		tab = malloc(sizeof(char *) * ++row + 1);
+		if (!tab)
+			return (NULL);
+		if (tmp)
+			dup_array(tab, tmp);
+		tab[row - 1] = ft_strdup(line);
+		tab[row] = 0;
+		free(line);
+		line = get_next_line(fd);
+	}
+	return (tab);
 }
 
 int	game_infos(t_game *game, t_parse *control)
@@ -82,13 +153,15 @@ int	game_infos(t_game *game, t_parse *control)
 		}
 		if (first_wall_line(line))
 			break ;
-		collect_data(line, game);
+		if (!collect_data(line, game))
+			return (0);
 		free(line);
 		line = get_next_line(control->fd);
 	}
 	if (!check_all_datas(game))
 		return (0);	// free en partant !
-	game->map = &line; // on stock la ligne qui a ete detectee si c'est le premiere wall
+	game->map = collect_map(line, control->fd);
+//	game->map = &line; // on stock la ligne qui a ete detectee si c'est le premiere wall
 	return (1);
 }
 
