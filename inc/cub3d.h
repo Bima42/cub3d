@@ -12,7 +12,7 @@
 # include "../srcs/get_next_line/get_next_line.h"
 # include "../libft/libft.h"
 
-# define WALL 1
+# define WALL '1'
 
 typedef struct s_game
 {

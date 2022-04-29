@@ -19,24 +19,17 @@ int	first_wall_line(char *line)
 	int	i;
 
 	i = 0;
-	if (!line)
+	if (!line || line[0] == '\0')
 		return (0);
 	skip_white_space(line, &i);
 	while (line[i] == WALL)
 	{
 		i++;
 		skip_white_space(line, &i);
-		// petit trick si le haut de la map ressemble a ca :
-		// 1111111     1111 1111111 11111
-		// 100000111111100111000001110001
-		// 100000000000000000000000000001
-		// 100000000000000000000000000001
 	}
 	if (line[i] == '\0')
 		return (1);
 	return (0);
-	// Dans cette fonction je skip les w space et apres je veux que des 1. si
-	// il y a autre chose c'est pas considerer comme un mur
 }
 
 int	collect_data(char *line, t_game *game)
@@ -82,7 +75,7 @@ int	game_infos(t_game *game, t_parse *control)
 		return (0);
 	while (!first_wall_line(line))
 	{
-		while (line[0] == '\n')
+		while (line[0] == '\0')
 		{
 			free(line);
 			line = get_next_line(control->fd);
@@ -95,7 +88,7 @@ int	game_infos(t_game *game, t_parse *control)
 	}
 	if (!check_all_datas(game))
 		return (0);	// free en partant !
-	game->map[0] = line; // on stock la ligne qui a ete detectee si c'est le premiere wall
+	game->map = &line; // on stock la ligne qui a ete detectee si c'est le premiere wall
 	return (1);
 }
 
