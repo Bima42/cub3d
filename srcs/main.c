@@ -54,6 +54,7 @@ int	main(int argc, char **argv)
 	if (!game)
 		return (0);
 	init_game(game);
-	parsing(argv[1], game);
+	if (!parsing(argv[1], game))
+		printf("Error\n");
 	return (0);
 }
