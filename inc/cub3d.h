@@ -58,8 +58,9 @@ int		parsing(char *path, t_game *game);
 void	init_parse(t_parse *control);
 
 //PARSING - collect_map.c
-void	free_array(char **tab);
 void	dup_array(char **tab, char **tmp);
+void	realloc_string(char **map, int row, int len);
+char	**format_map(char **map);
 char	**alloc_n_fill_array(char **tab);
 char	**collect_map(char *line, int fd);
 
@@ -77,8 +78,10 @@ int		game_infos(t_game *game, t_parse *control);
 int		is_w_space(char c);
 void	skip_white_space(char *str, int *i);
 void	vertical_skip_white_space(char **str, int *i, int x, int max_i);
+void	free_array(char **tab);
 
 //PARSING - map_checker.c
 int     check_map(char **map);
+void	get_max(char **map, int *max_y, int *max_x);
 
 #endif
