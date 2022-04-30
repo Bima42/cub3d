@@ -61,13 +61,13 @@ char	**format_map(char **map)
 
 	max_x = 0;
 	max_y = 0;
-	get_max(map, &max_x, &max_y);
+	get_max(map, &max_y, &max_x);
 	i = 0;
 	while (map[i])
 	{
 		len = ft_strlen(map[i]);
-		if (len < max_y)
-			realloc_string(map, i, max_y);
+		if (len < max_x)
+			realloc_string(map, i, max_x);
 		i++;
 	}
 	return (map);
