@@ -13,3 +13,11 @@ void	skip_white_space(char *str, int *i)
 	while (is_w_space(str[*i]))
 		*i += 1;
 }
+
+void	vertical_skip_white_space(char **str, int *i, int x, int max_i)
+{
+	if (*i >= max_i)
+		return ;
+	while (is_w_space(str[*i][x]) && *i < max_i - 1)
+		*i += 1;
+}

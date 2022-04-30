@@ -26,6 +26,40 @@ int	control_axis_x(char **map, int y, int max_y)
 	return (0); //error
 }
 
+/*int	control_axis_y(char **map, int x, int max_x, int max_y)
+{
+	int	y;
+
+	y = 0;
+	if (x == max_x)
+		return (1); //gg
+	if (y != max_y)
+	{
+		vertical_skip_white_space(map, &y, x, max_y);
+		while (y != max_y)
+		{
+			if (map[y][x] == WALL)
+			{
+				while (y != max_y && !is_w_space(map[y][x]))
+					y++;
+				if (map[y - 1][x] != WALL)
+					return (0); // error
+				vertical_skip_white_space(map, &y, x, max_y);
+			}
+			else
+				break ;
+		}
+		if (y == max_y - 1 || y == max_y)
+			return (control_axis_y(map, x + 1, max_x, max_y));
+		else
+		{
+			return (0); //error
+		}
+	}
+	write(1, "hihihi", 6);
+	return (0); //error
+}*/
+
 void	get_max(char **map, int *max_y, int *max_x)
 {
 	int	i;
@@ -57,9 +91,14 @@ int	check_map(char **map)
 	get_max(map, &max_y, &max_x);
 	if (!control_axis_x(map, 0, max_y))
 	{
-		printf("Map error !\n"); // remove and add better error message later
+		printf("Map error on x axis!\n"); // remove and add better error message later
 		return (0);
 	}
+/*	if (!control_axis_y(map, 0, max_x, max_y))
+	{
+		printf("Map error on y axis !\n"); // remove and add better error message later
+		return (0);
+	}*/
 	printf("map is ok !\n");
 	return (1);
 }
