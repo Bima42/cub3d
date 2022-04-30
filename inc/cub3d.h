@@ -76,6 +76,7 @@ int		game_infos(t_game *game, t_parse *control);
 //PARSING - tools.c
 int		is_w_space(char c);
 void	skip_white_space(char *str, int *i);
+void	vertical_skip_white_space(char **str, int *i, int x, int max_i);
 
 //PARSING - map_checker.c
 int     check_map(char **map);
