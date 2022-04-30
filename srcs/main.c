@@ -45,6 +45,26 @@ void	init_game(t_game *game)
 	game->player->hp = 0;
 }
 
+void	destroy_struct(t_game *game)
+{
+	free_array(game->map);
+	free(game->texture_pack->no->path);
+	free(game->texture_pack->so->path);
+	free(game->texture_pack->ea->path);
+	free(game->texture_pack->we->path);
+	free(game->texture_pack->ceiling->path);
+	free(game->texture_pack->floor->path);
+	free(game->texture_pack->no);
+	free(game->texture_pack->so);
+	free(game->texture_pack->ea);
+	free(game->texture_pack->we);
+	free(game->texture_pack->ceiling);
+	free(game->texture_pack->floor);
+	free(game->texture_pack);
+	free(game->player);
+	free(game);
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	*game;
