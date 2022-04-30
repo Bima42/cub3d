@@ -16,6 +16,10 @@ LIBFT_LIB = $(LIBFT_PATH)libft.a
 
 SRCS = 	srcs/main.c \
 		srcs/parsing/parsing.c \
+		srcs/parsing/collect_map.c \
+		srcs/parsing/file_format.c \
+		srcs/parsing/game_infos.c \
+		srcs/parsing/tools.c \
 		srcs/get_next_line/get_next_line.c \
 		srcs/get_next_line/get_next_line_utils.c
 
