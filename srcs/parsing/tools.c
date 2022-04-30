@@ -21,3 +21,13 @@ void	vertical_skip_white_space(char **str, int *i, int x, int max_i)
 	while (is_w_space(str[*i][x]) && *i < max_i - 1)
 		*i += 1;
 }
+
+void	free_array(char **tab)
+{
+	int	i;
+
+	i = -1;
+	while (tab[++i])
+		free(tab[i]);
+	free(tab);
+}
