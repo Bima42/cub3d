@@ -53,7 +53,28 @@ typedef struct s_parse
     int rgb_err;
 }           t_parse;
 
-//PARSING
-int	parsing(char *path, t_game *game);
+//PARSING - parsing.c
+int		parsing(char *path, t_game *game);
+void	init_parse(t_parse *control);
+
+//PARSING - collect_map.c
+void	free_array(char **tab);
+void	dup_array(char **tab, char **tmp);
+char	**alloc_n_fill_array(char **tab);
+char	**collect_map(char *line, int fd);
+
+//PARSING - file_format.c
+int		check_file_format(char *str, char *str2, int start);
+int		file_format(char *path, t_parse *control);
+
+//PARSING - game_infos.c
+int		check_all_datas(t_game *game);
+int		first_wall_line(char *line);
+int		collect_data(char *line, t_game *game);
+int		game_infos(t_game *game, t_parse *control);
+
+//PARSING - tools.c
+int		is_w_space(char c);
+void	skip_white_space(char *str, int *i);
 
 #endif
