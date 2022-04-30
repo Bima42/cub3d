@@ -20,6 +20,7 @@ SRCS = 	srcs/main.c \
 		srcs/parsing/file_format.c \
 		srcs/parsing/game_infos.c \
 		srcs/parsing/tools.c \
+		srcs/parsing/map_checker.c \
 		srcs/get_next_line/get_next_line.c \
 		srcs/get_next_line/get_next_line_utils.c
 
