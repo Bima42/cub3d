@@ -67,14 +67,11 @@ void	destroy_struct(t_game *game)
 
 int	main(int argc, char **argv)
 {
-	t_game	*game;
+	t_game	game;
 	(void)argc;
 
-	game = malloc(sizeof(t_game));
-	if (!game)
-		return (0);
-	init_game(game);
-	if (!parsing(argv[1], game))
+	init_game(&game);
+	if (!parsing(argv[1], &game))
 		printf("Error\n");
 	return (0);
 }
