@@ -19,7 +19,7 @@ int	parsing(char *path, t_game *game)
 		return (0);
 	if (!game_infos(game, &control))
 		return (0);
-	if (!check_map(game->map))
+	if (!check_map(game->map, game, &control))
 		return (0);
 	return (1);
 }
