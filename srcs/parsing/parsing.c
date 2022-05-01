@@ -1,16 +1,5 @@
 #include "../../inc/cub3d.h"
 
-/*int	check_map(char **map)
-{
-	if (!check_first_line(map))
-		return (0);
-//	if (!check_last_line(map))
-//		return (0);
-	if (!check_perimeter(map))
-		return (0);
-	return (1);
-}*/
-
 void	init_parse(t_parse *control)
 {
 	control->fd = 0;
@@ -25,7 +14,7 @@ void	display_map(char **map)
 {
 	int	i = 0;
 
-	while (map[i])
+	while (map[i][0] != '\0')
 		printf("%s\n", map[i++]);
 }
 
@@ -38,9 +27,9 @@ int	parsing(char *path, t_game *game)
 		return (0);
 	if (!game_infos(game, &control))
 		return (0);
-//	if (!check_map(game->map))
-//		return (0);
+	if (!check_map(game->map))
+		return (0);
 	display_map(game->map);
-	exit(0);
+	exit(1);
 	return (1);
 }

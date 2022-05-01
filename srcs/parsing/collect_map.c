@@ -70,6 +70,10 @@ char	**format_map(char **map)
 			realloc_string(map, i, max_x);
 		i++;
 	}
+	free(map[i]);
+	map[i] = malloc(sizeof(char *) * len);
+	while (max_x)
+		map[i][max_x--] = '\0';
 	return (map);
 }
 
