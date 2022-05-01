@@ -10,6 +10,12 @@ void	init_parse(t_parse *control)
 	control->rgb_err = 0;
 }
 
+int	check_data(t_texture_pack *texture)
+{
+	int		i;
+	char	*color;
+}
+
 int	parsing(char *path, t_game *game)
 {
 	t_parse	control;
@@ -18,6 +24,8 @@ int	parsing(char *path, t_game *game)
 	if (!file_format(path, &control))
 		return (0);
 	if (!game_infos(game, &control))
+		return (0);
+	if (!check_data(game->texture_pack))
 		return (0);
 	if (!check_map(game->map, game, &control))
 		return (0);

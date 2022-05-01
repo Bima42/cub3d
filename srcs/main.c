@@ -39,7 +39,13 @@ void	init_game(t_game *game)
 	game->texture_pack->ea->path = NULL;
 	game->texture_pack->we->path = NULL;
 	game->texture_pack->ceiling->path = NULL;
+	game->texture_pack->ceiling->R = 0;
+	game->texture_pack->ceiling->G = 0;
+	game->texture_pack->ceiling->B = 0;
 	game->texture_pack->floor->path = NULL;
+	game->texture_pack->floor->R = 0;
+	game->texture_pack->floor->G = 0;
+	game->texture_pack->floor->B = 0;
 	game->player->x = 0;
 	game->player->y = 0;
 	game->player->hp = 0;
