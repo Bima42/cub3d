@@ -10,14 +10,6 @@ void	init_parse(t_parse *control)
 	control->rgb_err = 0;
 }
 
-void	display_map(char **map)
-{
-	int	i = 0;
-
-	while (map[i][0] != '\0')
-		printf("%s\n", map[i++]);
-}
-
 int	parsing(char *path, t_game *game)
 {
 	t_parse	control;
@@ -29,7 +21,5 @@ int	parsing(char *path, t_game *game)
 		return (0);
 	if (!check_map(game->map))
 		return (0);
-	display_map(game->map);
-	exit(1);
 	return (1);
 }
