@@ -1,5 +1,11 @@
 #include "../inc/cub3d.h"
 
+void	exit_n_display(char *str)
+{
+	write(1, str, ft_strlen(str));
+	exit(0);
+}
+
 void	init_texture_pk_dir(t_game *game)
 {
 	t_texture	*no;
@@ -10,11 +16,23 @@ void	init_texture_pk_dir(t_game *game)
 	t_texture	*floor;
 
 	no = malloc(sizeof(t_texture));
+	if (!no)
+		exit_n_display("malloc failed\n");
 	so = malloc(sizeof(t_texture));
+	if (!so)
+		exit_n_display("malloc failed\n");
 	ea = malloc(sizeof(t_texture));
+	if (!ea)
+		exit_n_display("malloc failed\n");
 	we = malloc(sizeof(t_texture));
+	if (!we)
+		exit_n_display("malloc failed\n");
 	ceiling = malloc(sizeof(t_texture));
+	if (!ceiling)
+		exit_n_display("malloc failed\n");
 	floor = malloc(sizeof(t_texture));
+	if (!floor)
+		exit_n_display("malloc failed\n");
 	game->texture_pack->no = no;
 	game->texture_pack->so = so;
 	game->texture_pack->ea = ea;
@@ -29,8 +47,12 @@ void	init_game(t_game *game)
 	t_player		*player;
 
 	texture_pack = malloc(sizeof(t_texture_pack));
+	if (!texture_pack)
+		exit_n_display("malloc failed\n");
 	game->texture_pack = texture_pack;
 	player = malloc(sizeof(t_player));
+	if (!player)
+		exit_n_display("malloc failed\n");
 	game->player = player;
 	init_texture_pk_dir(game);
 	game->map = NULL;
