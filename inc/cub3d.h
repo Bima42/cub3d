@@ -38,6 +38,9 @@ typedef struct s_texture_pack
 typedef struct s_texture
 {
 	char	*path;
+	int		R;
+	int		G;
+	int		B;
 }			t_texture;
 
 typedef struct s_player
