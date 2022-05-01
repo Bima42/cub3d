@@ -73,7 +73,33 @@ void	get_max(char **map, int *max_y, int *max_x)
 	*max_x = greater_value;
 }
 
-int	check_map(char **map)
+int	find_player_pos(char **map, t_game *game, t_parse *control)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (map[y])
+	{
+		x = 0;
+		while (map[y][x])
+		{
+			if (map[y][x] == 'N' || map[y][x] == 'S'
+			 || map[y][x] == 'W' || map[y][x] == 'E')
+			{
+				game->player->x = x;
+				game->player->y = y;
+				game->player->orientation = map[y][x];
+				control->spawn++;
+			}
+			x++;
+		}
+		y++;
+	}
+	return (1);
+}
+
+int	check_map(char **map, t_game *game, t_parse *control)
 {
 	int	max_y;
 	int	max_x;
@@ -89,6 +115,11 @@ int	check_map(char **map)
 	if (!control_axis_y(map, 0, max_x))
 	{
 		printf("Map error on y axis !\n"); // remove and add better error message later
+		return (0);
+	}
+	if (!find_player_pos(map, game, control) || control->spawn != 1)
+	{
+		printf("Mac Lallen Koui\n"); // remove and add better error message later
 		return (0);
 	}
 	printf("map is ok !\n");

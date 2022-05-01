@@ -13,6 +13,10 @@
 # include "../libft/libft.h"
 
 # define WALL '1'
+# define NORTH 78
+# define SOUTH 83
+# define EAST 69
+# define WEST 87
 
 typedef struct s_game
 {
@@ -41,6 +45,7 @@ typedef struct s_player
 	int	x;
 	int	y;
 	int	hp;
+	int	orientation;
 }			t_player;
 
 typedef struct s_parse
@@ -81,7 +86,10 @@ void	vertical_skip_white_space(char **str, int *i, int x);
 void	free_array(char **tab);
 
 //PARSING - map_checker.c
-int     check_map(char **map);
+int		control_axis_x(char **map, int y, int max_y);
+int		control_axis_x(char **map, int x, int max_x);
 void	get_max(char **map, int *max_y, int *max_x);
+int		find_player_pos(char **map, t_game *game, t_parse *control);
+int     check_map(char **map, t_game *game, t_parse *control);
 
 #endif
