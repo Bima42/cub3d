@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:44:15 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/02 15:55:41 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/02 17:47:39 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	first_wall_line(char *line)
 	return (0);
 }
 
+//char *line est devenu *l, norm trick
 int	collect_data(char *l, t_game *game)
 {
 	int	i;
@@ -91,7 +92,7 @@ int	game_infos(t_game *game, t_parse *control)
 		if (!collect_data(line, game))
 			return (0);
 		free(line);
-		line = get_next_line(control->fd);
+		line = get_next_line(control->fd); //NO NEED PROTECT ? ALL FUNC ARE PROTECTED
 	}
 	if (!check_all_datas(game))
 		return (0); // free en partant !
