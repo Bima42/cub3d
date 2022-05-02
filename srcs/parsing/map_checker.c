@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_checker.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/02 15:44:22 by tpauvret          #+#    #+#             */
+/*   Updated: 2022/05/02 15:46:44 by tpauvret         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 int	control_axis_x(char **map, int y, int max_y)
@@ -85,7 +97,7 @@ int	find_player_pos(char **map, t_game *game, t_parse *control)
 		while (map[y][x])
 		{
 			if (map[y][x] == 'N' || map[y][x] == 'S'
-			 || map[y][x] == 'W' || map[y][x] == 'E')
+				|| map[y][x] == 'W' || map[y][x] == 'E')
 			{
 				game->player->x = x;
 				game->player->y = y;

@@ -15,6 +15,7 @@ LIBFT_LIB = $(LIBFT_PATH)libft.a
 #MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework Appkit
 
 SRCS = 	srcs/main.c \
+		srcs/init.c \
 		srcs/parsing/parsing.c \
 		srcs/parsing/collect_map.c \
 		srcs/parsing/file_format.c \
