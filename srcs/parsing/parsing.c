@@ -10,10 +10,31 @@ void	init_parse(t_parse *control)
 	control->rgb_err = 0;
 }
 
-int	check_data(t_texture_pack *texture)
+int	check_data(t_texture_pack *pack, t_texture *texture, int count)
 {
+	char	**split;
 	int		i;
-	char	*color;
+
+	i = 0;
+	if (count > 1)
+		return (1);
+	split = ft_split(texture->path, ',');
+	if (!split)
+		return (0);
+	if (split[2])
+	{
+		texture->R = ft_atoi(split[0]);
+		texture->G = ft_atoi(split[1]);
+		texture->B = ft_atoi(split[2]);
+	}
+	if (texture->R < 0 || texture->R > 255)
+		return (0);
+	if (texture->G < 0 || texture->G > 255)
+		return (0);
+	if (texture->B < 0 || texture->B > 255)
+		return (0);
+	free_array(split);
+	return (check_data(pack, pack->floor, ++count));
 }
 
 int	parsing(char *path, t_game *game)
@@ -25,7 +46,7 @@ int	parsing(char *path, t_game *game)
 		return (0);
 	if (!game_infos(game, &control))
 		return (0);
-	if (!check_data(game->texture_pack))
+	if (!check_data(game->texture_pack, game->texture_pack->ceiling, 0))
 		return (0);
 	if (!check_map(game->map, game, &control))
 		return (0);
