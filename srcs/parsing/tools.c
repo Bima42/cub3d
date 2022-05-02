@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:44:32 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/02 15:45:19 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/02 22:42:00 by ypetruzz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,20 @@ void	free_array(char **tab)
 	while (tab[++i])
 		free(tab[i]);
 	free(tab);
+}
+
+void	dup_array(char **tab, char **tmp)
+{
+	int	i;
+
+	i = 0; //NO NEED TO PROTECT, FUNC IS CALLED AFTER TAB CHECK AND IF TMP ALREADY EXIST
+	while (tmp[i])
+	{
+		tab[i] = ft_strdup(tmp[i]);
+		if (!tab[i])
+			exit_n_display("malloc failed\n");
+		i++;
+	}
+	if (tmp)
+		free_array(tmp);
 }

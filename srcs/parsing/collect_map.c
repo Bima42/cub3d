@@ -6,27 +6,11 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:44:02 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/02 22:38:38 by ypetruzz         ###   ########.fr       */
+/*   Updated: 2022/05/02 22:42:04 by ypetruzz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
-void	dup_array(char **tab, char **tmp)
-{
-	int	i;
-
-	i = 0; //NO NEED TO PROTECT, FUNC IS CALLED AFTER TAB CHECK AND IF TMP ALREADY EXIST
-	while (tmp[i])
-	{
-		tab[i] = ft_strdup(tmp[i]);
-		if (!tab[i])
-			exit_n_display("malloc failed\n");
-		i++;
-	}
-	if (tmp)
-		free_array(tmp);
-}
 
 char	**alloc_n_fill_array(char **tab)
 {
@@ -95,7 +79,7 @@ char	**format_map(char **map)
 		i++;
 	}
 	free(map[i]);
-	map[i] = malloc(sizeof(char *) * len); //SIZEOF CHAR ICI NON ? YVAAAAAAN
+	map[i] = malloc(sizeof(char) * len);
 	if (!map[i])
 		exit_n_display("malloc failed\n");
 	while (max_x)
@@ -103,7 +87,7 @@ char	**format_map(char **map)
 	return (map);
 }
 
-int	init_collect(int *row, char ***tmp, char ***tab, char *line)
+static int	init_collect(int *row, char ***tmp, char ***tab, char *line)
 {
 	*row = 0;
 	*tmp = NULL;
