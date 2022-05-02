@@ -79,7 +79,7 @@ int		file_format(char *path, t_parse *control);
 //PARSING - game_infos.c
 int		check_all_datas(t_game *game);
 int		first_wall_line(char *line);
-int		collect_data(char *line, t_game *game);
+int		collect_data(char *l, t_game *game);
 int		game_infos(t_game *game, t_parse *control);
 
 //PARSING - tools.c
@@ -94,5 +94,15 @@ int		control_axis_x(char **map, int x, int max_x);
 void	get_max(char **map, int *max_y, int *max_x);
 int		find_player_pos(char **map, t_game *game, t_parse *control);
 int     check_map(char **map, t_game *game, t_parse *control);
+
+//INIT - init.c
+void	init_texture_pk_dir(t_game *game);
+void	init_texture_pk_dir_next(t_game *game);
+void	set_texture_pack(t_game *game);
+void	init_game(t_game *game);
+
+//MAIN - main.c
+void	exit_n_display(char *str);
+void	destroy_struct(t_game *game);
 
 #endif

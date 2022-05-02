@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   collect_map.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/02 15:44:02 by tpauvret          #+#    #+#             */
+/*   Updated: 2022/05/02 15:44:04 by tpauvret         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 void	dup_array(char **tab, char **tmp)
@@ -8,6 +20,8 @@ void	dup_array(char **tab, char **tmp)
 	while (tmp[i])
 	{
 		tab[i] = ft_strdup(tmp[i]);
+		if (!tab[i])
+			exit_n_display("malloc failed\n");
 		i++;
 	}
 	if (tmp)
@@ -23,9 +37,15 @@ char	**alloc_n_fill_array(char **tab)
 	while (tab[i])
 		i++;
 	ret = malloc(sizeof(char *) * i + 1);
+	if (!ret)
+		exit_n_display("malloc failed\n");
 	i = -1;
 	while (tab[++i])
+	{
 		ret[i] = ft_strdup(tab[i]);
+		if (!ret[i])
+			exit_n_display("malloc failed\n");
+	}
 	ret[i] = 0;
 	return (ret);
 }
@@ -38,7 +58,7 @@ void	realloc_string(char **map, int row, int len)
 	i = 0;
 	tmp = malloc(sizeof(char) * len + 1);
 	if (!tmp)
-		return ; // TODO : protect crash with exit func
+		exit_n_display("malloc failed\n");
 	while (map[row][i])
 	{
 		tmp[i] = map[row][i];
@@ -49,6 +69,8 @@ void	realloc_string(char **map, int row, int len)
 		tmp[i++] = ' ';
 	tmp[i] = '\0';
 	map[row] = ft_strdup(tmp);
+	if (!map[row])
+		exit_n_display("malloc failed\n");
 	free(tmp);
 }
 
@@ -71,7 +93,9 @@ char	**format_map(char **map)
 		i++;
 	}
 	free(map[i]);
-	map[i] = malloc(sizeof(char *) * len);
+	map[i] = malloc(sizeof(char *) * len); //SIZEOF CHAR ICI NON ?
+	if (!map[i])
+		exit_n_display("malloc failed\n");
 	while (max_x)
 		map[i][max_x--] = '\0';
 	return (map);
@@ -86,6 +110,8 @@ char	**collect_map(char *line, int fd)
 	row = 0;
 	tmp = NULL;
 	tab = NULL;
+	if (!line)
+		return (NULL);
 	while (line)
 	{
 		if (tab)
@@ -95,13 +121,13 @@ char	**collect_map(char *line, int fd)
 		}
 		tab = malloc(sizeof(char *) * ++row + 1);
 		if (!tab)
-			return (NULL);
+			exit_n_display("malloc failed\n");
 		if (tmp)
 			dup_array(tab, tmp);
-		tab[row - 1] = ft_strdup(line);
+		tab[row - 1] = ft_strdup(line); //NOT PROTECTED
 		tab[row] = 0;
 		free(line);
-		line = get_next_line(fd);
+		line = get_next_line(fd); //NOT PROTECTED
 	}
 	return (format_map(tab));
 }
