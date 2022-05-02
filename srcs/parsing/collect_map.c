@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:44:02 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/02 15:44:04 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/02 17:42:47 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	dup_array(char **tab, char **tmp)
 {
 	int	i;
 
-	i = 0;
+	i = 0; //NO NEED TO PROTECT, FUNC IS CALLED AFTER TAB CHECK AND IF TMP ALREADY EXIST
 	while (tmp[i])
 	{
 		tab[i] = ft_strdup(tmp[i]);
@@ -33,7 +33,7 @@ char	**alloc_n_fill_array(char **tab)
 	char	**ret;
 	int		i;
 
-	i = 0;
+	i = 0; //NO NEED TO PROTECT TAB, THIS FUNC IS CALLED IF TAB ALREADY EXIST
 	while (tab[i])
 		i++;
 	ret = malloc(sizeof(char *) * i + 1);
@@ -83,17 +83,19 @@ char	**format_map(char **map)
 
 	max_x = 0;
 	max_y = 0;
+	if (!map)
+		return (NULL);
 	get_max(map, &max_y, &max_x);
 	i = 0;
 	while (map[i])
 	{
 		len = ft_strlen(map[i]);
 		if (len < max_x)
-			realloc_string(map, i, max_x);
+			realloc_string(map, i, max_x); //THIS FUNC IS PROTECTED
 		i++;
 	}
 	free(map[i]);
-	map[i] = malloc(sizeof(char *) * len); //SIZEOF CHAR ICI NON ?
+	map[i] = malloc(sizeof(char *) * len); //SIZEOF CHAR ICI NON ? YVAAAAAAN
 	if (!map[i])
 		exit_n_display("malloc failed\n");
 	while (max_x)
@@ -125,6 +127,8 @@ char	**collect_map(char *line, int fd)
 		if (tmp)
 			dup_array(tab, tmp);
 		tab[row - 1] = ft_strdup(line); //NOT PROTECTED
+		if (!tab[row - 1])
+			exit_n_display("malloc failed\n");
 		tab[row] = 0;
 		free(line);
 		line = get_next_line(fd); //NOT PROTECTED
