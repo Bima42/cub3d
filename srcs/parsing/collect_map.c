@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:44:02 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/02 22:27:22 by ypetruzz         ###   ########.fr       */
+/*   Updated: 2022/05/02 22:38:38 by ypetruzz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@ char	**format_map(char **map)
 int	init_collect(int *row, char ***tmp, char ***tab, char *line)
 {
 	*row = 0;
-	tmp = NULL;
-	tab = NULL;
+	*tmp = NULL;
+	*tab = NULL;
 	if (!line)
 		return (0);
 	return (1);
@@ -119,18 +119,14 @@ char	**collect_map(char *line, int fd)
 	char	**tmp;
 	int		row;
 
-	row = 0;
-	tmp = NULL;
-	tab = NULL;
-	if (!line)
+	if (!init_collect(&row, &tmp, &tab, line))
 		return (NULL);
 	while (line)
 	{
 		if (tab)
-		{
 			tmp = alloc_n_fill_array(tab);
+		if (tab)
 			free_array(tab);
-		}
 		tab = malloc(sizeof(char *) * ++row + 1);
 		if (!tab)
 			exit_n_display("malloc failed\n");
