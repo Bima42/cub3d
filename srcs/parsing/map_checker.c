@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:44:22 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/02 15:46:44 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/02 22:31:59 by ypetruzz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,10 @@ int	find_player_pos(char **map, t_game *game, t_parse *control)
 	int	x;
 
 	y = 0;
-	while (map[y])
+	while (map[y][0] != '\0')
 	{
 		x = 0;
-		while (map[y][x])
+		while (map[y][x] != '\0')
 		{
 			if (map[y][x] == 'N' || map[y][x] == 'S'
 				|| map[y][x] == 'W' || map[y][x] == 'E')
