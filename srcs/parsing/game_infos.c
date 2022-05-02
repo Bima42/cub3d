@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:44:15 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/02 17:47:39 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/02 21:30:04 by ypetruzz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,17 +75,13 @@ int	game_infos(t_game *game, t_parse *control)
 {
 	char	*line;
 
-	line = get_next_line(control->fd);
-	if (!line)
-		return (0);
+	line = get_next_line(control->fd); // no need to be protected since if there is no line it will get catched in func. collect_data
 	while (!first_wall_line(line))
 	{
 		while (line[0] == '\0')
 		{
 			free(line);
 			line = get_next_line(control->fd);
-			if (!line)
-				return (0);
 		}
 		if (first_wall_line(line))
 			break ;
