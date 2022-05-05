@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:44:32 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/02 22:42:00 by ypetruzz         ###   ########.fr       */
+/*   Updated: 2022/05/05 16:50:51 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	dup_array(char **tab, char **tmp)
 {
 	int	i;
 
-	i = 0; //NO NEED TO PROTECT, FUNC IS CALLED AFTER TAB CHECK AND IF TMP ALREADY EXIST
+	i = 0;
 	while (tmp[i])
 	{
 		tab[i] = ft_strdup(tmp[i]);

@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:44:02 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/02 22:42:04 by ypetruzz         ###   ########.fr       */
+/*   Updated: 2022/05/05 16:48:27 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	**alloc_n_fill_array(char **tab)
 	char	**ret;
 	int		i;
 
-	i = 0; //NO NEED TO PROTECT TAB, THIS FUNC IS CALLED IF TAB ALREADY EXIST
+	i = 0;
 	while (tab[i])
 		i++;
 	ret = malloc(sizeof(char *) * i + 1);
@@ -75,7 +75,7 @@ char	**format_map(char **map)
 	{
 		len = ft_strlen(map[i]);
 		if (len < max_x)
-			realloc_string(map, i, max_x); //THIS FUNC IS PROTECTED
+			realloc_string(map, i, max_x);
 		i++;
 	}
 	free(map[i]);
@@ -87,7 +87,7 @@ char	**format_map(char **map)
 	return (map);
 }
 
-static int	init_collect(int *row, char ***tmp, char ***tab, char *line)
+int	init_collect(int *row, char ***tmp, char ***tab, char *line)
 {
 	*row = 0;
 	*tmp = NULL;
@@ -116,12 +116,12 @@ char	**collect_map(char *line, int fd)
 			exit_n_display("malloc failed\n");
 		if (tmp)
 			dup_array(tab, tmp);
-		tab[row - 1] = ft_strdup(line); //NOT PROTECTED
+		tab[row - 1] = ft_strdup(line);
 		if (!tab[row - 1])
 			exit_n_display("malloc failed\n");
 		tab[row] = 0;
 		free(line);
-		line = get_next_line(fd); //NOT PROTECTED
+		line = get_next_line(fd);
 	}
 	return (format_map(tab));
 }
