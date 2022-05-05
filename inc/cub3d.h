@@ -69,6 +69,7 @@ void	init_parse(t_parse *control);
 void	realloc_string(char **map, int row, int len);
 char	**format_map(char **map);
 char	**alloc_n_fill_array(char **tab);
+int		init_collect(int *row, char ***tmp, char ***tab, char *line);
 char	**collect_map(char *line, int fd);
 
 //PARSING - file_format.c
