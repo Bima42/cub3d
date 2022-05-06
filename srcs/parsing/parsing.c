@@ -6,11 +6,17 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:43:51 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/02 16:00:16 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/06 15:26:31 by ypetruzz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+
+int	error_message(char *msg, int ret)
+{
+	write(1, msg, ft_strlen(msg));
+	return (ret);
+}
 
 void	init_parse(t_parse *control)
 {
@@ -55,12 +61,12 @@ int	parsing(char *path, t_game *game)
 
 	init_parse(&control);
 	if (!file_format(path, &control))
-		return (0);
+		return (error_message("File format error. Use .cub maps only\n", 0));
 	if (!game_infos(game, &control))
-		return (0);
+		return (error_message("Datas might be missing, check data format and try again\n", 0));
 	if (!check_data(game->texture_pack, game->texture_pack->ceiling, 0))
-		return (0);
+		return (error_message("Datas might be wrong, respect the format and try again\n", 0));
 	if (!check_map(game->map, game, &control))
-		return (0);
+		return (error_message("A map error has been caught, make sure your map is valid and try again\n", 0));
 	return (1);
 }
