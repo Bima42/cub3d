@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:44:22 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/05 16:53:49 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/06 15:27:00 by ypetruzz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,20 +120,11 @@ int	check_map(char **map, t_game *game, t_parse *control)
 	max_x = 0;
 	get_max(map, &max_y, &max_x);
 	if (!control_axis_x(map, 0, max_y))
-	{
-		printf("Map error on x axis!\n");
 		return (0);
-	}
 	if (!control_axis_y(map, 0, max_x))
-	{
-		printf("Map error on y axis !\n");
 		return (0);
-	}
 	if (!find_player_pos(map, game, control) || control->spawn != 1)
-	{
-		printf("Mac Lallen Koui\n");
 		return (0);
-	}
 	printf("map is ok !\n");
 	return (1);
 }
