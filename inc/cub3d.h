@@ -64,6 +64,7 @@ typedef struct s_parse
 //PARSING - parsing.c
 int		parsing(char *path, t_game *game);
 void	init_parse(t_parse *control);
+int     error_message(char *msg, int ret);
 
 //PARSING - collect_map.c
 void	realloc_string(char **map, int row, int len);
