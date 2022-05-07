@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:47:24 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/07 14:53:02 by ypetruzz         ###   ########.fr       */
+/*   Updated: 2022/05/07 17:36:12 by ypetruzz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,13 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
+	game.mlx = mlx_init();
 	if (argc == 2)
 	{
 		init_game(&game);
 		if (!parsing(argv[1], &game))
 			exit_n_display("Error\n");
-		//init_win(&game);
+		video_init(&game);
 	}
 	else
 		write(1, "Wrong arguments\n", 16);

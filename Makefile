@@ -24,7 +24,7 @@ SRCS = 	srcs/main.c \
 		srcs/parsing/map_checker.c \
 		srcs/get_next_line/get_next_line.c \
 		srcs/get_next_line/get_next_line_utils.c \
-		srcs/jspfrr.c
+		srcs/video_init.c
 
 OBJS = $(SRCS:.c=.o)
 
