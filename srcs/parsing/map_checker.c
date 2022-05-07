@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:44:22 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/06 15:27:00 by ypetruzz         ###   ########.fr       */
+/*   Updated: 2022/05/07 13:21:34 by ypetruzz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	control_axis_y(char **map, int x, int max_x)
 	if (map[y][x] != '\0')
 	{
 		vertical_skip_white_space(map, &y, x);
-		while (map[y][x] == WALL && map[y][x] != '\0')
+		while (map[y][x] == WALL)
 		{
 			while (map[y][x] != '\0' && !is_w_space(map[y][x]))
 				y++;

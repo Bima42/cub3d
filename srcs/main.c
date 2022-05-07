@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:47:24 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/02 17:34:59 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/07 14:25:10 by ypetruzz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	main(int argc, char **argv)
 		init_game(&game);
 		if (!parsing(argv[1], &game))
 			exit_n_display("Error\n");
+		//init_win(&game);
 	}
 	else
 		write(1, "Wrong arguments\n", 16);

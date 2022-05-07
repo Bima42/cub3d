@@ -23,7 +23,17 @@ typedef struct s_game
 	char					**map;
 	struct s_texture_pack	*texture_pack;
 	struct s_player			*player;
+    void                    *mlx;
+    struct s_window         *win;
 }			t_game;
+
+typedef struct s_window
+{
+	void                    *mlx_win;
+    int                     x;
+    int                     y;
+    void                    *img;
+}           t_window;
 
 typedef struct s_texture_pack
 {
@@ -106,5 +116,8 @@ void	init_game(t_game *game);
 //MAIN - main.c
 void	exit_n_display(char *str);
 void	destroy_struct(t_game *game);
+
+//No name..
+void    init_win(t_game *game);
 
 #endif
