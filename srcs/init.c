@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:50:04 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/07 18:44:07 by ypetruzz         ###   ########.fr       */
+/*   Updated: 2022/05/07 18:47:14 by ypetruzz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ void	init_game(t_game *game)
 	t_player		*player;
 	t_window		*window;
 
-	game->w = 1920;
-	game->h = 1080;
+	game->w = 1280;
+	game->h = 640;
 	init_keys(game);
 	window = malloc(sizeof(t_window));
 	if (!window)
