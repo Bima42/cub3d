@@ -8,11 +8,11 @@ LIBFT_PATH = libft/
 
 LIBFT_LIB = $(LIBFT_PATH)libft.a
 
-#MLX_PATH = mlx/
+MLX_PATH = mlx/
 
-#MLX_LIB = $(MLX_PATH)libmlx.a
+MLX_LIB = $(MLX_PATH)libmlx.a
 
-#MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework Appkit
+MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework Appkit
 
 SRCS = 	srcs/main.c \
 		srcs/init.c \
@@ -23,20 +23,21 @@ SRCS = 	srcs/main.c \
 		srcs/parsing/tools.c \
 		srcs/parsing/map_checker.c \
 		srcs/get_next_line/get_next_line.c \
-		srcs/get_next_line/get_next_line_utils.c
+		srcs/get_next_line/get_next_line_utils.c \
+		srcs/jspfrr.c
 
 OBJS = $(SRCS:.c=.o)
 
 all: subsystems $(NAME)
 
 %.o : %.c
-	@$(CC) $(CFLAGS) -c -o $@ $<
+	@$(CC) $(CFLAGS) -Imlx -c -o $@ $<
 
 subsystems:
 	make -C $(LIBFT_PATH) all
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_LIB) -o $(NAME)
+	@$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJS) $(MLX_LIB) $(LIBFT_LIB) -o $(NAME)
 
 clean:
 	@make -C $(LIBFT_PATH) clean

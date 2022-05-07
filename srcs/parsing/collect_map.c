@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:44:02 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/05 16:48:27 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/07 14:23:49 by ypetruzz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,10 @@ char	**format_map(char **map)
 		i++;
 	}
 	free(map[i]);
-	map[i] = malloc(sizeof(char) * len);
+	map[i] = malloc(sizeof(char) * max_x + 1);
 	if (!map[i])
 		exit_n_display("malloc failed\n");
-	while (max_x)
+	while (max_x != -1)
 		map[i][max_x--] = '\0';
 	return (map);
 }
