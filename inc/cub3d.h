@@ -32,8 +32,20 @@ typedef struct s_window
 	void                    *mlx_win;
     int                     x;
     int                     y;
-    void                    *img;
+    struct s_img            *img;
 }           t_window;
+
+
+typedef struct	s_img
+{
+	void		*img;
+	char		*addr;
+	int			bpp;
+	int			linelen;
+	int			endian;
+	int			width;
+	int			height;
+}				t_img;
 
 typedef struct s_texture_pack
 {
@@ -47,10 +59,11 @@ typedef struct s_texture_pack
 
 typedef struct s_texture
 {
-	char	*path;
-	int		R;
-	int		G;
-	int		B;
+	char	        *path;
+    struct s_img    img;
+	int		        R;
+	int		        G;
+	int		        B;
 }			t_texture;
 
 typedef struct s_player
@@ -117,7 +130,10 @@ void	init_game(t_game *game);
 void	exit_n_display(char *str);
 void	destroy_struct(t_game *game);
 
-//No name..
-void    init_win(t_game *game);
+//VIDEO - video_init.c
+void    load_tex(t_game *game);
+void    load_tex_bis(t_game *game);
+int     video_init(t_game *game);
+void    check_dim(t_game *game);
 
 #endif
