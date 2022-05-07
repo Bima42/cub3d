@@ -24,17 +24,11 @@ typedef struct s_game
 	struct s_texture_pack	*texture_pack;
 	struct s_player			*player;
     void                    *mlx;
+    int                     w;
+    int                     h;
     struct s_window         *win;
+    struct s_keys           *keys;
 }			t_game;
-
-typedef struct s_window
-{
-	void                    *mlx_win;
-    int                     x;
-    int                     y;
-    struct s_img            *img;
-}           t_window;
-
 
 typedef struct	s_img
 {
@@ -46,6 +40,22 @@ typedef struct	s_img
 	int			width;
 	int			height;
 }				t_img;
+
+typedef struct s_window
+{
+	void                    *mlx_win;
+    struct s_img            img;
+}           t_window;
+
+typedef struct	s_keys
+{
+	int			movefor;
+	int			moveback;
+	int			moveleft;
+	int			moveright;
+	int			turnleft;
+	int			turnright;
+}				t_keys;
 
 typedef struct s_texture_pack
 {
@@ -135,5 +145,13 @@ void    load_tex(t_game *game);
 void    load_tex_bis(t_game *game);
 int     video_init(t_game *game);
 void    check_dim(t_game *game);
+
+//VIDEO - window_init.c
+void    window_init(t_game *game);
+
+//MAIN - hooks.c
+void    set_hooks(t_game *game);
+int     pressed(int keycode, t_keys *keys);
+int     released(int keycode, t_keys *keys);
 
 #endif

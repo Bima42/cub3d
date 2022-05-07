@@ -1,4 +1,4 @@
-#include "../inc/cub3d.h"
+#include "../../inc/cub3d.h"
 
 void	load_tex(t_game *game)
 {
@@ -55,6 +55,5 @@ int	video_init(t_game *game)
 	load_tex(game);
 	load_tex_bis(game);
 	check_dim(game);
-	while (1);
 	return (1);
 }

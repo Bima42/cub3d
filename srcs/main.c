@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:47:24 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/07 17:36:12 by ypetruzz         ###   ########.fr       */
+/*   Updated: 2022/05/07 18:44:16 by ypetruzz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int	main(int argc, char **argv)
 		if (!parsing(argv[1], &game))
 			exit_n_display("Error\n");
 		video_init(&game);
+		window_init(&game);
+		set_hooks(&game);
 	}
 	else
 		write(1, "Wrong arguments\n", 16);

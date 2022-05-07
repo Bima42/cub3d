@@ -16,6 +16,7 @@ MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework Appkit
 
 SRCS = 	srcs/main.c \
 		srcs/init.c \
+		srcs/hook.c \
 		srcs/parsing/parsing.c \
 		srcs/parsing/collect_map.c \
 		srcs/parsing/file_format.c \
@@ -24,7 +25,8 @@ SRCS = 	srcs/main.c \
 		srcs/parsing/map_checker.c \
 		srcs/get_next_line/get_next_line.c \
 		srcs/get_next_line/get_next_line_utils.c \
-		srcs/video_init.c
+		srcs/video/window_init.c \
+		srcs/video/video_init.c
 
 OBJS = $(SRCS:.c=.o)
 
