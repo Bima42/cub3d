@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:50:04 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/08 14:42:09 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/08 14:57:19 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void	init_game(t_game *game)
 	t_texture_pack	*texture_pack;
 	t_player		*player;
 	t_window		*window;
+	t_rays			*rays;
 
 	init_keys(game);
 	window = malloc(sizeof(t_window));
@@ -105,6 +106,10 @@ void	init_game(t_game *game)
 	if (!player)
 		exit_n_display("malloc failed\n");
 	game->player = player;
+	rays = malloc(sizeof(t_rays));
+	if (!rays)
+		exit_n_display("malloc failed\n");
+	game->rays = rays;
 	init_texture_pk_dir(game);
 	init_texture_pk_dir_next(game);
 	set_texture_pack(game);

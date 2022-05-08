@@ -41,6 +41,7 @@ typedef struct s_game
 	char					**map;
 	struct s_texture_pack	*texture_pack;
 	struct s_player			*player;
+	struct s_rays			*rays;
     void                    *mlx;
     int                     map_w;
     int                     map_h;
@@ -58,6 +59,18 @@ typedef struct	s_img
 	int			width;
 	int			height;
 }				t_img;
+
+typedef struct s_rays
+{
+	double	ang;
+	double	h_hit_x;
+	double	v_hit_y;
+	double	tan;
+	double	hit_x;
+	double	hit_y;
+	double	dist;
+	double	length;
+}			t_rays;
 
 typedef struct s_window
 {

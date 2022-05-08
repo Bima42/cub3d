@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:47:24 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/07 18:44:16 by ypetruzz         ###   ########.fr       */
+/*   Updated: 2022/05/08 14:58:21 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	destroy_struct(t_game *game)
 	free(game->texture_pack->floor);
 	free(game->texture_pack);
 	free(game->player);
+	free(game->rays);
 	free(game);
 }
 
