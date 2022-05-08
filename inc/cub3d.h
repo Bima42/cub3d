@@ -121,6 +121,7 @@ char	**collect_map(char *line, int fd);
 //PARSING - file_format.c
 int		check_file_format(char *str, char *str2, int start);
 int		file_format(char *path, t_parse *control);
+int     check_texture_format(t_game *game);
 
 //PARSING - game_infos.c
 int		check_all_datas(t_game *game);
