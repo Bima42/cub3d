@@ -13,10 +13,16 @@
 # include "../libft/libft.h"
 
 # define WALL '1'
-# define NORTH 78
-# define SOUTH 83
-# define EAST 69
-# define WEST 87
+
+# define NORTH 90
+# define SOUTH 270
+# define EAST 0
+# define WEST 180
+# define WIN_W 1280
+# define WIN_H 640
+# define FOV 60.0
+# define TILE 64
+# define PI 3.141592
 
 # define ESCAPE 53
 # define UP 126
@@ -36,8 +42,8 @@ typedef struct s_game
 	struct s_texture_pack	*texture_pack;
 	struct s_player			*player;
     void                    *mlx;
-    int                     w;
-    int                     h;
+    int                     map_w;
+    int                     map_h;
     struct s_window         *win;
     struct s_keys           *keys;
 }			t_game;
@@ -140,6 +146,7 @@ void	dup_array(char **tab, char **tmp);
 int		control_axis_x(char **map, int y, int max_y);
 int		control_axis_x(char **map, int x, int max_x);
 void	get_max(char **map, int *max_y, int *max_x);
+void	get_player_orientation(t_game *game);
 int		find_player_pos(char **map, t_game *game, t_parse *control);
 int     check_map(char **map, t_game *game, t_parse *control);
 

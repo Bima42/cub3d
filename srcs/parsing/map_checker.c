@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:44:22 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/07 18:05:37 by ypetruzz         ###   ########.fr       */
+/*   Updated: 2022/05/08 14:51:02 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,18 @@ void	get_max(char **map, int *max_y, int *max_x)
 	*max_x = greater_value;
 }
 
+void	get_player_orientation(t_game *game)
+{
+	if (game->player->orientation == 'N')
+		game->player->orientation = NORTH;
+	else if (game->player->orientation == 'S')
+		game->player->orientation = SOUTH;
+	else if (game->player->orientation == 'E')
+		game->player->orientation = EAST;
+	else if (game->player->orientation == 'W')
+		game->player->orientation = WEST;
+}
+
 int	find_player_pos(char **map, t_game *game, t_parse *control)
 {
 	int	y;
@@ -99,8 +111,8 @@ int	find_player_pos(char **map, t_game *game, t_parse *control)
 			if (map[y][x] == 'N' || map[y][x] == 'S'
 				|| map[y][x] == 'W' || map[y][x] == 'E')
 			{
-				game->player->x = x;
-				game->player->y = y;
+				game->player->x = x * 64;
+				game->player->y = y * 64;
 				game->player->orientation = map[y][x];
 				control->spawn++;
 			}
@@ -119,12 +131,15 @@ int	check_map(char **map, t_game *game, t_parse *control)
 	max_y = 0;
 	max_x = 0;
 	get_max(map, &max_y, &max_x);
+	game->map_w = max_x;
+	game->map_h = max_y;
 	if (!control_axis_x(map, 0, max_y))
 		return (0);
 	if (!control_axis_y(map, 0, max_x))
 		return (0);
 	if (!find_player_pos(map, game, control) || control->spawn != 1)
 		return (0);
+	get_player_orientation(game);
 	printf("map is ok !\n");
 	return (1);
 }
