@@ -18,6 +18,18 @@
 # define EAST 69
 # define WEST 87
 
+# define ESCAPE 53
+# define UP 126
+# define DOWN 125
+# define RIGHT 124
+# define LEFT 123
+# define Z 6
+# define Q 12
+# define S 1
+# define D 0
+# define W 13
+# define A 2
+
 typedef struct s_game
 {
 	char					**map;
