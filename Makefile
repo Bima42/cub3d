@@ -26,7 +26,10 @@ SRCS = 	srcs/main.c \
 		srcs/get_next_line/get_next_line.c \
 		srcs/get_next_line/get_next_line_utils.c \
 		srcs/video/window_init.c \
-		srcs/video/video_init.c
+		srcs/video/video_init.c \
+		srcs/engine/engine.c \
+		srcs/engine/engine_tools.c
+		#srcs/engine/raycasting.c
 
 OBJS = $(SRCS:.c=.o)
 

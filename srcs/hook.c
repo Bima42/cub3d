@@ -4,7 +4,7 @@ void	set_hooks(t_game *game)
 {
 	mlx_hook(game->win->mlx_win, 2, 1L << 0, pressed, &(game->keys));
 	mlx_hook(game->win->mlx_win, 3, 1L << 1, released, &(game->keys));
-	//mlx_loop_hook(game->mlx, RAYCAST BABE, &game);
+	mlx_loop_hook(game->mlx, engine, game);
 	mlx_loop(game->mlx);
 }
 

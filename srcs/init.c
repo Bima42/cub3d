@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:50:04 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/08 14:57:19 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/08 22:59:00 by ypetruzz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,13 @@ void	init_game(t_game *game)
 	t_player		*player;
 	t_window		*window;
 	t_rays			*rays;
+	t_img			*img;
 
+	img = malloc(sizeof(t_img));
+	if (!img)
+		exit_n_display("malloc failed\n");
+	game->img = img;
+	game->img->img = NULL;
 	init_keys(game);
 	window = malloc(sizeof(t_window));
 	if (!window)
