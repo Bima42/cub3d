@@ -10,36 +10,36 @@ void	set_hooks(t_game *game)
 
 int	pressed(int keycode, t_keys *keys)
 {
-	if (keycode == 53)
+	if (keycode == ESCAPE)
 		exit(0);
-	if (keycode == 13)
+	if (keycode == W || keycode == Z)
 		keys->movefor = 1;
-	if (keycode == 1)
+	if (keycode == S)
 		keys->moveback = 1;
-	if (keycode == 0)
+	if (keycode == D)
 		keys->moveright = 1;
-	if (keycode == 2)
+	if (keycode == A)
 		keys->moveleft = 1;
-	if (keycode == 123)
+	if (keycode == LEFT)
 		keys->turnright = 1;
-	if (keycode == 124)
+	if (keycode == RIGHT)
 		keys->turnleft = 1;
 	return (0);
 }
 
 int	released(int keycode, t_keys *keys)
 {
-	if (keycode == 13)
+	if (keycode == W || keycode == Z)
 		keys->movefor = 0;
-	if (keycode == 1)
+	if (keycode == S)
 		keys->moveback = 0;
-	if (keycode == 0)
+	if (keycode == D)
 		keys->moveright = 0;
-	if (keycode == 2)
+	if (keycode == A)
 		keys->moveleft = 0;
-	if (keycode == 123)
+	if (keycode == LEFT)
 		keys->turnright = 0;
-	if (keycode == 124)
+	if (keycode == RIGHT)
 		keys->turnleft = 0;
 	return (0);
 }
