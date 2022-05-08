@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:43:51 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/07 13:53:15 by ypetruzz         ###   ########.fr       */
+/*   Updated: 2022/05/08 04:18:04 by ypetruzz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,7 @@ int	parsing(char *path, t_game *game)
 		return (error_message("Datas might be wrong, respect the format and try again\n", 0));
 	if (!check_map(game->map, game, &control))
 		return (error_message("A map error has been caught, make sure your map is valid and try again\n", 0));
+	if (!check_texture_format(game))
+		return (error_message("A texture format error has been detected, make sure the textures are .xpm\n", 0));
 	return (1);
 }

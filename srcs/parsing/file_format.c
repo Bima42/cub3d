@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:44:09 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/02 15:44:10 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/08 04:17:37 by ypetruzz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,24 @@ int	file_format(char *path, t_parse *control)
 		if (control->fd < 0)
 			return (0);
 	}
+	return (1);
+}
+
+int	check_texture_format(t_game *game)
+{
+	int	size;
+
+	size = ft_strlen(game->texture_pack->no->path);
+	if (check_file_format(game->texture_pack->no->path, ".xpm", size - 4))
+		return (0);
+	size = ft_strlen(game->texture_pack->so->path);
+	if (check_file_format(game->texture_pack->so->path, ".xpm", size - 4))
+		return (0);
+	size = ft_strlen(game->texture_pack->ea->path);
+	if (check_file_format(game->texture_pack->ea->path, ".xpm", size - 4))
+		return (0);
+	size = ft_strlen(game->texture_pack->we->path);
+	if (check_file_format(game->texture_pack->we->path, ".xpm", size - 4))
+		return (0);
 	return (1);
 }
