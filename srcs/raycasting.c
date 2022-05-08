@@ -95,6 +95,19 @@ void	raycasting(t_game *game)
 		while (game->rays->ang < 0)
 			game->rays->ang += 360;
 		h_res = horizontal_raycasting(game);
+		game->rays->h_hit_x = game->rays->hit_x;
+		v_res = vertical_raycasting(game);
+		game->rays->v_hit_y = game->rays->hit_y;
+		if (h_res < v_res)
+		{
+			game->flag_hori = 1;
+			game->rays->dist = h_res;
+		}
+		else
+			game->rays->dist = v_res;
+		//draw(game);
+		game->rays->ang -= FOV / (double)WIN_W;
+		game->column++;
 	}
 }
 
