@@ -36,6 +36,17 @@
 # define W 13
 # define A 2
 
+typedef struct	s_img
+{
+	void		*img;
+	char		*addr;
+	int			bpp;
+	int			linelen;
+	int			endian;
+	int			width;
+	int			height;
+}				t_img;
+
 typedef struct s_game
 {
 	char					**map;
@@ -51,18 +62,8 @@ typedef struct s_game
     int                     map_h;
     struct s_window         *win;
     struct s_keys           *keys;
+    struct s_img            *img;
 }			t_game;
-
-typedef struct	s_img
-{
-	void		*img;
-	char		*addr;
-	int			bpp;
-	int			linelen;
-	int			endian;
-	int			width;
-	int			height;
-}				t_img;
 
 typedef struct s_rays
 {
@@ -193,4 +194,11 @@ void    set_hooks(t_game *game);
 int     pressed(int keycode, t_keys *keys);
 int     released(int keycode, t_keys *keys);
 
+//ENGINE - raycasting.c
+
+//ENGINE - engine_tools.c
+int     color_picker(unsigned char red, unsigned char green, unsigned char blue);
+
+//ENGINE - egine.c
+int     engine(t_game *game);
 #endif
