@@ -50,6 +50,7 @@ int	engine(t_game *game)
 {
 	create_image(game);
 	draw_background(game);
+	raycasting(game);
 	mlx_put_image_to_window(game->mlx, game->win->mlx_win, game->img->img, 0, 0);
 	return (0);
 }
