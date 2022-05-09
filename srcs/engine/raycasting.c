@@ -2,7 +2,7 @@
 
 double	degrees_to_radians(double value)
 {
-	return (value * PI / 180);
+	return (value * M_PI / 180);
 }
 
 double	square(double value)
@@ -32,22 +32,22 @@ double	vertical_raycasting(t_game *game)
 	if (game->rays->ang < NORTH || game->rays->ang > SOUTH) // LOOKING RIGHT
 	{
 		game->rays->step_x = TILE;
-		game->rays->hit_x = floor(game->player->x / TILE) * TILE + TILE; // Rounded up double to int
+		game->rays->hit_x = floor(game->player->x / TILE) * TILE + TILE; //Rounded down float to double
 	//	game->rays->hit_x = floor(game->player->pos_x >> 6) << 6 + TILE;
 	}
 	else
 	{
 		game->rays->step_x = -TILE;
-		game->rays->hit_x = floor(game->player->x / TILE) * TILE - 0.00001; // Rounded up double to int
+		game->rays->hit_x = floor(game->player->x / TILE) * TILE - 0.00001; //Rounded down float to double
 	//	game->rays->hit_y = floor(game->player->pos_y >> 6) << 6 - 0.00001;
 	}
-	game->rays->hit_y = game->player->y + (game->player->x - game->rays->hit_x) / game->rays->tan;
+	game->rays->hit_y = game->player->y + (game->player->x - game->rays->hit_x) * game->rays->tan;
 	if (game->rays->ang == WEST || game->rays->ang == EAST) // LOOK STRAIGHT RIGHT OR LEFT
 		game->rays->step_y = 0;								  // y gap = 0
 	else
-		game->rays->step_y = TILE * -game->rays->tan;
+		game->rays->step_y = TILE * (game->rays->tan * -1);
 	if (game->rays->ang >= NORTH && game->rays->ang <= SOUTH)
-		game->rays->step_y = -game->rays->step_y;
+		game->rays->step_y *= -1;
 	digital_differential_analyzer(game);
 	return (sqrt(square((game->player->x - game->rays->hit_x))
 		+ square((game->player->y - game->rays->hit_y))));
@@ -56,16 +56,16 @@ double	vertical_raycasting(t_game *game)
 double	horizontal_raycasting(t_game *game)
 {
 	game->rays->tan = tan(degrees_to_radians(game->rays->ang));
-	if (game->rays->ang > EAST && game->rays->ang < WEST) // LOOKING DOWN
+	if (game->rays->ang > EAST && game->rays->ang < WEST) // LOOKING UP
 	{
 		game->rays->step_y = -TILE;
-		game->rays->hit_y = floor(game->player->y / TILE) * TILE - 0.00001; // Rounded up double to int
+		game->rays->hit_y = floor(game->player->y / TILE) * TILE - 0.00001; //Rounded down float to double
 	//	game->rays->hit_y = floor(game->player->pos_y >> 6) << 6 - 0.00001;
 	}
 	else
 	{
 		game->rays->step_y = TILE;
-		game->rays->hit_y = floor(game->player->y / TILE) * TILE + TILE; // Rounded up double to int
+		game->rays->hit_y = floor(game->player->y / TILE) * TILE + TILE; //Rounded down float to double
 	//	game->rays->hit_y = floor(game->player->pos_y >> 6) << 6 + TILE;
 	}
 	game->rays->hit_x = game->player->x + (game->player->y - game->rays->hit_y) / game->rays->tan;
@@ -74,7 +74,7 @@ double	horizontal_raycasting(t_game *game)
 	else
 		game->rays->step_x = TILE / game->rays->tan;
 	if (game->rays->step_x > WEST)
-		game->rays->step_x = -game->rays->step_x;
+		game->rays->step_x *= -1;
 	digital_differential_analyzer(game);
 	return (sqrt(square((game->player->x - game->rays->hit_x))
 		+ square((game->player->y - game->rays->hit_y))));
@@ -132,6 +132,7 @@ void	raycasting(t_game *game)
 	while (game->column < WIN_W)
 	{
 		game->flag_hori = 0;
+//		game->rays->ang = fmod(game->rays->ang, 360.0);
 		while (game->rays->ang >= 360)
 			game->rays->ang -= 360;
 		while (game->rays->ang < 0)
@@ -140,6 +141,7 @@ void	raycasting(t_game *game)
 		game->rays->h_hit_x = game->rays->hit_x;
 		v_res = vertical_raycasting(game);
 		game->rays->v_hit_y = game->rays->hit_y;
+//		printf("hit_x %f || hit_y%f\n", game->rays->hit_x, game->rays->hit_y);
 		if (h_res < v_res)
 		{
 			game->flag_hori = 1;
