@@ -36,12 +36,12 @@ void	draw_background(t_game *game)
 	color.G = 0;
 	color.B = 0;
 	define_color(&color, game->texture_pack->ceiling);
-	while (y++ < WIN_H)
+	while (++y < WIN_H)
 	{
 		x = -1;
 		if (y == WIN_H / 2)
 			define_color(&color, game->texture_pack->floor);
-		while (x++ < WIN_W)
+		while (++x < WIN_W)
 			put_pixel(game->img, x, y, color_picker(color.R, color.G, color.B));
 	}
 }
