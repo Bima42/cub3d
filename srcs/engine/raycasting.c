@@ -141,7 +141,6 @@ void	raycasting(t_game *game)
 		game->rays->h_hit_x = game->rays->hit_x;
 		v_res = vertical_raycasting(game);
 		game->rays->v_hit_y = game->rays->hit_y;
-//		printf("hit_x %f || hit_y%f\n", game->rays->hit_x, game->rays->hit_y);
 		if (h_res < v_res)
 		{
 			game->flag_hori = 1;
@@ -153,4 +152,5 @@ void	raycasting(t_game *game)
 		game->rays->ang -= FOV / (double)WIN_W;
 		game->column++;
 	}
+	exit(0);
 }
