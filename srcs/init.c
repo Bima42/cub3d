@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:50:04 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/08 22:59:00 by ypetruzz         ###   ########.fr       */
+/*   Updated: 2022/05/09 15:16:19 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void	init_game(t_game *game)
 	if (!player)
 		exit_n_display("malloc failed\n");
 	game->player = player;
+	game->player->height = WIN_H / 2; //NO NEED TO BE THERE
 	rays = malloc(sizeof(t_rays));
 	if (!rays)
 		exit_n_display("malloc failed\n");

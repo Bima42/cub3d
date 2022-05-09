@@ -22,6 +22,8 @@
 # define WIN_H 640
 # define FOV 60.0
 # define TILE 64
+# define WALL_RES 64
+# define RATIO (TILE * ((WIN_W/2) / tan(degrees_to_radians(FOV / 2))))
 # define PI 3.141592
 
 # define ESCAPE 53
@@ -60,6 +62,9 @@ typedef struct s_game
 	int						map_pos_y;
     int                     map_w;
     int                     map_h;
+	int						start;
+	int						end;
+	int						color;
     struct s_window         *win;
     struct s_keys           *keys;
     struct s_img            *img;
@@ -75,6 +80,8 @@ typedef struct s_rays
 	double	hit_y;
 	double	step_x;
 	double	step_y;
+	double	text_x;
+	double	text_y;
 	double	dist;
 	double	length;
 }			t_rays;
@@ -101,6 +108,7 @@ typedef struct s_texture_pack
 	struct s_texture *so;
 	struct s_texture *ea;
 	struct s_texture *we;
+	struct s_texture *wall;
 	struct s_texture *ceiling;
 	struct s_texture *floor;
 }			t_texture_pack;
@@ -119,6 +127,7 @@ typedef struct s_player
 	int	x;
 	int	y;
 	int	hp;
+	int	height;
 	int	orientation;
 }			t_player;
 
@@ -201,5 +210,6 @@ void	raycasting(t_game *game);
 int     color_picker(unsigned char red, unsigned char green, unsigned char blue);
 
 //ENGINE - egine.c
+void	put_pixel(t_img *img, int x, int y, int color);
 int     engine(t_game *game);
 #endif

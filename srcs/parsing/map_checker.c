@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:44:22 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/08 14:51:02 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/09 17:00:23 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,8 @@ int	find_player_pos(char **map, t_game *game, t_parse *control)
 			if (map[y][x] == 'N' || map[y][x] == 'S'
 				|| map[y][x] == 'W' || map[y][x] == 'E')
 			{
-				game->player->x = x * 64;
-				game->player->y = y * 64;
+				game->player->x = x * 64 + (TILE / 2);
+				game->player->y = y * 64 - (TILE / 2);
 				game->player->orientation = map[y][x];
 				control->spawn++;
 			}
