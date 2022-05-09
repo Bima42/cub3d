@@ -195,6 +195,7 @@ int     pressed(int keycode, t_keys *keys);
 int     released(int keycode, t_keys *keys);
 
 //ENGINE - raycasting.c
+void	raycasting(t_game *game);
 
 //ENGINE - engine_tools.c
 int     color_picker(unsigned char red, unsigned char green, unsigned char blue);
