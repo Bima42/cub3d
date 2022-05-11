@@ -73,7 +73,7 @@ double	horizontal_raycasting(t_game *game)
 		game->rays->step_x = 0;								  // x gap = 0
 	else
 		game->rays->step_x = TILE / game->rays->tan;
-	if (game->rays->step_x > WEST)
+	if (game->rays->ang > WEST)
 		game->rays->step_x *= -1;
 	digital_differential_analyzer(game);
 	return (sqrt(square((game->player->x - game->rays->hit_x))
@@ -89,7 +89,10 @@ void	draw_wall(t_game *game)
 	{
 		game->rays->text_y = (game->start - game->player->height + game->rays->length / 2) * WALL_RES / game->rays->length;
 		//game->color = get_pixel(game, game->rays->text_x, game->rays->text_y);
-		game->color = color_picker(209, 24, 191);
+		if (game->flag_hori)
+			game->color = color_picker(23, 198, 210);
+		else
+			game->color = color_picker(209, 24, 191);
 		put_pixel(game->img, game->column, game->start, game->color);
 		game->start++;
 	}
@@ -102,7 +105,7 @@ void	draw(t_game *game)
 	game->start = game->player->height - game->rays->length / 2 + 1;
 	game->end = game->player->height + game->rays->length / 2;
 	game->start = (game->start < 0 ? 0 : game->start);
-	game->end = (game->end >= WIN_H ? WIN_H - 1 : game->end);
+	game->end = (game->end >= WIN_H ? (WIN_H - 1) : game->end);
 	if (game->flag_hori)
 	{
 		game->rays->text_x = fmod(game->rays->h_hit_x, TILE);
@@ -132,7 +135,8 @@ void	raycasting(t_game *game)
 	while (game->column < WIN_W)
 	{
 		game->flag_hori = 0;
-//		game->rays->ang = fmod(game->rays->ang, 360.0);
+//		game->rays->ang = fmod(game->rays->ang, 360.0); idea for the whiles (it
+//		does not work :D)
 		while (game->rays->ang >= 360)
 			game->rays->ang -= 360;
 		while (game->rays->ang < 0)
@@ -152,5 +156,4 @@ void	raycasting(t_game *game)
 		game->rays->ang -= FOV / (double)WIN_W;
 		game->column++;
 	}
-	exit(0);
 }
