@@ -23,8 +23,7 @@
 # define FOV 60.0
 # define TILE 64
 # define WALL_RES 64
-# define RATIO (TILE * ((WIN_W/2) / tan(degrees_to_radians(FOV / 2))))
-# define PI 3.141592
+# define RATIO TILE * ((WIN_W/2) / tan(degrees_to_radians(FOV / 2)))
 
 # define ESCAPE 53
 # define UP 126
