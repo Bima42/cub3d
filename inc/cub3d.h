@@ -192,6 +192,7 @@ int     check_map(char **map, t_game *game, t_parse *control);
 void	init_texture_pk_dir(t_game *game);
 void	init_texture_pk_dir_next(t_game *game);
 void	set_texture_pack(t_game *game);
+void	init_keys_n_player(t_game *game);
 void	init_game(t_game *game);
 
 //MAIN - main.c
@@ -201,10 +202,11 @@ void	destroy_struct(t_game *game);
 //VIDEO - video_init.c
 void    load_tex(t_game *game);
 void    load_tex_bis(t_game *game);
-int     video_init(t_game *game);
 void    check_dim(t_game *game);
+int     video_init(t_game *game);
 
 //VIDEO - window_init.c
+void	init_graphics(t_game *game);
 void    window_init(t_game *game);
 
 //MAIN - hooks.c
@@ -212,24 +214,23 @@ void    set_hooks(t_game *game);
 int     pressed(int keycode, t_keys *keys);
 int     released(int keycode, t_keys *keys);
 
+//ENGINE - engine.c
+void	create_image(t_game *game);
+void	draw_background(t_game *game);
+int     engine(t_game *game);
+
 //ENGINE - raycasting.c
-double	deg_to_rad(double value);
-double	square(double value);
 void	digital_differential_analyzer(t_game *game);
 double	vertical_raycasting(t_game *game);
 double	horizontal_raycasting(t_game *game);
-void	draw_wall(t_game *game);
-void	draw(t_game *game);
-void	move_if_allowed(t_game *game);
-void	player_move(t_game *game);
 void	raycasting(t_game *game);
 
 //ENGINE - engine_tools.c
-int     color_picker(unsigned char red, unsigned char green, unsigned char blue);
-
-//ENGINE - egine.c
+double	deg_to_rad(double value);
+double	square(double value);
 void	put_pixel(t_img *img, int x, int y, int color);
-int     engine(t_game *game);
+void	define_color(t_texture *color, t_texture *zone);
+int     color_picker(unsigned char red, unsigned char green, unsigned char blue);
 
 //ENGINE - motion.c
 void	move_if_allowed(t_game *game);
