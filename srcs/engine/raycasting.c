@@ -151,7 +151,8 @@ void	player_move(t_game *game)
 		game->player->next_x = game->player->x - cos(degrees_to_radians(game->player->orientation)) * MOVESPEED;
 		game->player->next_y = game->player->y + sin(degrees_to_radians(game->player->orientation)) * MOVESPEED;
 	}
-	else if (game->keys->moveright)
+	move_if_allowed(game);
+	if (game->keys->moveright)
 	{
 		game->player->next_x = game->player->x + cos(degrees_to_radians(game->player->orientation + 90)) * MOVESPEED;
 		game->player->next_y = game->player->y - sin(degrees_to_radians(game->player->orientation + 90)) * MOVESPEED;
@@ -173,7 +174,6 @@ void	raycasting(t_game *game)
 	double	h_res;
 	double	v_res;
 
-	player_move(game);
 	game->column = 0;
 	game->rays->ang = game->player->orientation + FOV / 2;
 	while (game->column < WIN_W)
