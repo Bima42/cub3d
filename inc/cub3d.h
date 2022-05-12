@@ -37,6 +37,9 @@
 # define W 13
 # define A 2
 
+# define MOVESPEED 10
+# define ROTATION 5
+
 typedef struct	s_img
 {
 	void		*img;
@@ -124,7 +127,9 @@ typedef struct s_texture
 typedef struct s_player
 {
 	int	x;
+	int	next_x;
 	int	y;
+	int	next_y;
 	int	hp;
 	int	height;
 	int	orientation;
