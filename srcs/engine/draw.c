@@ -1,5 +1,13 @@
 #include "../../inc/cub3d.h"
 
+unsigned int	get_pixel(t_texture *tex, int x, int y)
+{
+	char *dst;
+
+	dst = tex->img.addr + (y * tex->img.linelen + x * (tex->img.bpp / 8));
+	return (*(unsigned int*)dst);
+}
+
 void	draw_wall(t_game *game)
 {
 	if (game->texture_pack->wall == game->texture_pack->so
@@ -8,11 +16,7 @@ void	draw_wall(t_game *game)
 	while (game->start < game->end)
 	{
 		game->rays->text_y = (game->start - game->player->height + game->rays->length / 2) * WALL_RES / game->rays->length;
-		//game->color = get_pixel(game, game->rays->text_x, game->rays->text_y);
-		if (game->flag_hori)
-			game->color = color_picker(23, 198, 210);
-		else
-			game->color = color_picker(209, 24, 191);
+		game->color = get_pixel(game->texture_pack->wall, game->rays->text_x, game->rays->text_y);
 		put_pixel(game->img, game->column, game->start, game->color);
 		game->start++;
 	}
@@ -30,17 +34,17 @@ void	draw(t_game *game)
 	{
 		game->rays->text_x = fmod(game->rays->h_hit_x, TILE);
 		if (game->rays->ang > EAST && game->rays->ang < WEST)
-			game->texture_pack->wall = game->texture_pack->no;
-		else
 			game->texture_pack->wall = game->texture_pack->so;
+		else
+			game->texture_pack->wall = game->texture_pack->no;
 	}
 	else
 	{
 		game->rays->text_x = fmod(game->rays->v_hit_y, TILE);
 		if (game->rays->ang >= NORTH && game->rays->ang <= SOUTH)
-			game->texture_pack->wall = game->texture_pack->we;
-		else
 			game->texture_pack->wall = game->texture_pack->ea;
+		else
+			game->texture_pack->wall = game->texture_pack->we;
 	}
 	draw_wall(game);
 }
