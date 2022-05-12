@@ -125,11 +125,55 @@ void	draw(t_game *game)
 	draw_wall(game);
 }
 
+void	move_if_allowed(t_game *game)
+{
+	int	new_map_x;
+	int	new_map_y;
+
+	new_map_x = game->player->next_x / (int)TILE;
+	new_map_y = game->player->next_y / (int)TILE;
+	if (game->map[new_map_y][new_map_x] != WALL)
+	{
+		game->player->x = game->player->next_x;
+		game->player->y = game->player->next_y;
+	}
+}
+
+void	player_move(t_game *game)
+{
+	if (game->keys->movefor)
+	{
+		game->player->next_x = game->player->x + cos(degrees_to_radians(game->player->orientation)) * MOVESPEED;
+		game->player->next_y = game->player->y - sin(degrees_to_radians(game->player->orientation)) * MOVESPEED;
+	}
+	else if (game->keys->moveback)
+	{
+		game->player->next_x = game->player->x - cos(degrees_to_radians(game->player->orientation)) * MOVESPEED;
+		game->player->next_y = game->player->y + sin(degrees_to_radians(game->player->orientation)) * MOVESPEED;
+	}
+	else if (game->keys->moveright)
+	{
+		game->player->next_x = game->player->x + cos(degrees_to_radians(game->player->orientation + 90)) * MOVESPEED;
+		game->player->next_y = game->player->y - sin(degrees_to_radians(game->player->orientation + 90)) * MOVESPEED;
+	}
+	else if (game->keys->moveleft)
+	{
+		game->player->next_x = game->player->x - cos(degrees_to_radians(game->player->orientation + 90)) * MOVESPEED;
+		game->player->next_y = game->player->y + sin(degrees_to_radians(game->player->orientation + 90)) * MOVESPEED;
+	}
+	else if (game->keys->turnright)
+		game->player->orientation += ROTATION;
+	else if (game->keys->turnleft)
+		game->player->orientation -= ROTATION;
+	move_if_allowed(game);
+}
+
 void	raycasting(t_game *game)
 {
 	double	h_res;
 	double	v_res;
 
+	player_move(game);
 	game->column = 0;
 	game->rays->ang = game->player->orientation + FOV / 2;
 	while (game->column < WIN_W)
