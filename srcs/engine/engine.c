@@ -8,23 +8,6 @@ void	create_image(t_game *game)
 	game->img->addr = mlx_get_data_addr(game->img->img, &game->img->bpp, &game->img->linelen, &game->img->endian);
 }
 
-void	define_color(t_texture *color, t_texture *zone)
-{
-	color->R = zone->R;
-	color->G = zone->G;
-	color->B = zone->B;
-}
-
-void	put_pixel(t_img *img, int x, int y, int color)
-{
-	char	*dst;
-	int		offset;
-
-	offset = (y * img->linelen + x * (img->bpp / 8));
-	dst = img->addr + offset;
-	*(unsigned int *)dst = color;
-}
-
 void	draw_background(t_game *game)
 {
 	int				x;

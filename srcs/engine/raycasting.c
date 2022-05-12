@@ -1,15 +1,5 @@
 #include "../../inc/cub3d.h"
 
-double	deg_to_rad(double value)
-{
-	return (value * M_PI / 180);
-}
-
-double	square(double value)
-{
-	return (value * value);
-}
-
 void	digital_differential_analyzer(t_game *game)
 {
 	game->map_pos_x = game->rays->hit_x / (int)TILE;
