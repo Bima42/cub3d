@@ -1,9 +1,16 @@
 #include "../inc/cub3d.h"
 
+int	exit_game(t_game *game)
+{
+	(void)game;
+	exit(0);
+}
+
 void	set_hooks(t_game *game)
 {
-	mlx_hook(game->win->mlx_win, 2, 1L << 0, pressed, game->keys);
-	mlx_hook(game->win->mlx_win, 3, 1L << 1, released, game->keys);
+	mlx_hook(game->win->mlx_win, 17, STRUCTURENOTIFYMASK, exit_game, game);
+	mlx_hook(game->win->mlx_win, KEYPRESS, KEYPRESSMASK, pressed, game->keys);
+	mlx_hook(game->win->mlx_win, KEYRELEASE, KEYRELEASEMASK, released, game->keys);
 	mlx_loop_hook(game->mlx, engine, game);
 	mlx_loop(game->mlx);
 }
