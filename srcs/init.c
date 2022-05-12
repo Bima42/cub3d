@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:50:04 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/09 17:23:34 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/12 12:04:39 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	init_texture_pk_dir(t_game *game)
 	t_texture	*no;
 	t_texture	*so;
 	t_texture	*ea;
+	t_texture	*we;
 
 	no = malloc(sizeof(t_texture));
 	if (!no)
@@ -27,27 +28,26 @@ void	init_texture_pk_dir(t_game *game)
 	ea = malloc(sizeof(t_texture));
 	if (!ea)
 		exit_n_display("malloc failed\n");
+	we = malloc(sizeof(t_texture));
+	if (!we)
+		exit_n_display("malloc failed\n");
 	game->texture_pack->no = no;
 	game->texture_pack->so = so;
 	game->texture_pack->ea = ea;
+	game->texture_pack->we = we;
 }
 
 void	init_texture_pk_dir_next(t_game *game)
 {
-	t_texture	*we;
 	t_texture	*ceiling;
 	t_texture	*floor;
 
-	we = malloc(sizeof(t_texture));
-	if (!we)
-		exit_n_display("malloc failed\n");
 	ceiling = malloc(sizeof(t_texture));
 	if (!ceiling)
 		exit_n_display("malloc failed\n");
 	floor = malloc(sizeof(t_texture));
 	if (!floor)
 		exit_n_display("malloc failed\n");
-	game->texture_pack->we = we;
 	game->texture_pack->ceiling = ceiling;
 	game->texture_pack->floor = floor;
 }
@@ -67,14 +67,12 @@ void	set_texture_pack(t_game *game)
 	game->texture_pack->floor->R = 0;
 	game->texture_pack->floor->G = 0;
 	game->texture_pack->floor->B = 0;
-	game->player->x = 0;
-	game->player->y = 0;
-	game->player->hp = 0;
 }
 
-void	init_keys(t_game *game)
+void	init_keys_n_player(t_game *game)
 {
-	t_keys *new;
+	t_keys		*new;
+	t_player	*player;
 
 	new = malloc(sizeof(t_keys));
 	new->movefor = 0;
@@ -83,40 +81,25 @@ void	init_keys(t_game *game)
 	new->moveright = 0;
 	new->turnleft = 0;
 	new->turnright = 0;
+	player = malloc(sizeof(t_player));
+	if (!player)
+		exit_n_display("malloc failed\n");
+	player->x = 0;
+	player->y = 0;
+	player->height = WIN_H / 2;
 	game->keys = new;
+	game->player = player;
 }
 
 void	init_game(t_game *game)
 {
 	t_texture_pack	*texture_pack;
-	t_player		*player;
-	t_window		*window;
-	t_rays			*rays;
-	t_img			*img;
 
-	img = malloc(sizeof(t_img));
-	if (!img)
-		exit_n_display("malloc failed\n");
-	game->img = img;
-	game->img->img = NULL;
-	init_keys(game);
-	window = malloc(sizeof(t_window));
-	if (!window)
-		exit_n_display("malloc failed\n");
-	game->win = window;
 	texture_pack = malloc(sizeof(t_texture_pack));
 	if (!texture_pack)
 		exit_n_display("malloc failed\n");
 	game->texture_pack = texture_pack;
-	player = malloc(sizeof(t_player));
-	if (!player)
-		exit_n_display("malloc failed\n");
-	game->player = player;
-	game->player->height = WIN_H / 2; //NO NEED TO BE THERE
-	rays = malloc(sizeof(t_rays));
-	if (!rays)
-		exit_n_display("malloc failed\n");
-	game->rays = rays;
+	init_keys_n_player(game);
 	init_texture_pk_dir(game);
 	init_texture_pk_dir_next(game);
 	set_texture_pack(game);

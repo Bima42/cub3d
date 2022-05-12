@@ -50,10 +50,32 @@ void	check_dim(t_game *game)
 			exit_n_display("The textures do not possess the same dimensions.\n");
 }
 
+void	init_graphics(t_game *game)
+{
+	t_img			*img;
+	t_window		*window;
+	t_rays			*rays;
+
+	img = malloc(sizeof(t_img));
+	if (!img)
+		exit_n_display("malloc failed\n");
+	window = malloc(sizeof(t_window));
+	if (!window)
+		exit_n_display("malloc failed\n");
+	rays = malloc(sizeof(t_rays));
+	if (!rays)
+		exit_n_display("malloc failed\n");
+	game->img = img;
+	game->img->img = NULL;
+	game->win = window;
+	game->rays = rays;
+}
+
 int	video_init(t_game *game)
 {
 	load_tex(game);
 	load_tex_bis(game);
 	check_dim(game);
+	init_graphics(game);
 	return (1);
 }

@@ -29,7 +29,9 @@ SRCS = 	srcs/main.c \
 		srcs/video/video_init.c \
 		srcs/engine/engine.c \
 		srcs/engine/engine_tools.c \
-		srcs/engine/raycasting.c
+		srcs/engine/raycasting.c \
+		srcs/engine/draw.c \
+		srcs/engine/motion.c
 
 OBJS = $(SRCS:.c=.o)
 
