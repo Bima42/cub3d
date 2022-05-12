@@ -23,7 +23,7 @@
 # define FOV 60.0
 # define TILE 64
 # define WALL_RES 64
-# define RATIO TILE * ((WIN_W/2) / tan(degrees_to_radians(FOV / 2)))
+# define RATIO TILE * ((WIN_W/2) / tan(deg_to_rad(FOV / 2)))
 
 # define ESCAPE 53
 # define UP 126
@@ -133,10 +133,9 @@ typedef struct s_texture
 typedef struct s_player
 {
 	int	x;
-	int	next_x;
 	int	y;
+	int	next_x;
 	int	next_y;
-	int	hp;
 	int	height;
 	int	orientation;
 }			t_player;
@@ -214,7 +213,7 @@ int     pressed(int keycode, t_keys *keys);
 int     released(int keycode, t_keys *keys);
 
 //ENGINE - raycasting.c
-double	degrees_to_radians(double value);
+double	deg_to_rad(double value);
 double	square(double value);
 void	digital_differential_analyzer(t_game *game);
 double	vertical_raycasting(t_game *game);
@@ -231,4 +230,14 @@ int     color_picker(unsigned char red, unsigned char green, unsigned char blue)
 //ENGINE - egine.c
 void	put_pixel(t_img *img, int x, int y, int color);
 int     engine(t_game *game);
+
+//ENGINE - motion.c
+void	move_if_allowed(t_game *game);
+void	player_rotation(t_game *game);
+void	player_move(t_game *game);
+
+//ENGINE - draw.c
+void	draw_wall(t_game *game);
+void	draw(t_game *game);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:44:22 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/12 11:39:49 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/12 12:02:59 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	get_max(char **map, int *max_y, int *max_x)
 	*max_x = greater_value;
 }
 
-void	get_player_orientation(t_game *game)
+void	get_player_infos(t_game *game)
 {
 	if (game->player->orientation == 'N')
 		game->player->orientation = NORTH;
@@ -95,6 +95,8 @@ void	get_player_orientation(t_game *game)
 		game->player->orientation = EAST;
 	else if (game->player->orientation == 'W')
 		game->player->orientation = WEST;
+	game->player->next_x = game->player->x;
+	game->player->next_y = game->player->y;
 }
 
 int	find_player_pos(char **map, t_game *game, t_parse *control)
@@ -139,9 +141,6 @@ int	check_map(char **map, t_game *game, t_parse *control)
 		return (0);
 	if (!find_player_pos(map, game, control) || control->spawn != 1)
 		return (0);
-	get_player_orientation(game);
-	game->player->next_x = game->player->x;
-	game->player->next_y = game->player->y;
-	printf("map is ok !\n");
+	get_player_infos(game);
 	return (1);
 }
