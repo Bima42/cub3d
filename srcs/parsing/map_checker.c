@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:44:22 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/11 16:23:26 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/12 11:39:49 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,8 @@ int	check_map(char **map, t_game *game, t_parse *control)
 	if (!find_player_pos(map, game, control) || control->spawn != 1)
 		return (0);
 	get_player_orientation(game);
+	game->player->next_x = game->player->x;
+	game->player->next_y = game->player->y;
 	printf("map is ok !\n");
 	return (1);
 }

@@ -208,6 +208,15 @@ int     pressed(int keycode, t_keys *keys);
 int     released(int keycode, t_keys *keys);
 
 //ENGINE - raycasting.c
+double	degrees_to_radians(double value);
+double	square(double value);
+void	digital_differential_analyzer(t_game *game);
+double	vertical_raycasting(t_game *game);
+double	horizontal_raycasting(t_game *game);
+void	draw_wall(t_game *game);
+void	draw(t_game *game);
+void	move_if_allowed(t_game *game);
+void	player_move(t_game *game);
 void	raycasting(t_game *game);
 
 //ENGINE - engine_tools.c
