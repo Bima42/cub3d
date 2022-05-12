@@ -37,6 +37,12 @@
 # define W 13
 # define A 2
 
+# define KEYPRESS 2
+# define KEYRELEASE 3
+# define KEYPRESSMASK 1
+# define KEYRELEASEMASK 10
+# define STRUCTURENOTIFYMASK 10001
+
 # define MOVESPEED 10
 # define ROTATION 5
 
