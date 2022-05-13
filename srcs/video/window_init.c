@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   window_init.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/13 15:11:24 by tpauvret          #+#    #+#             */
+/*   Updated: 2022/05/13 15:11:36 by tpauvret         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 void	init_graphics(t_game *game)
@@ -27,5 +39,6 @@ void	window_init(t_game *game)
 	game->win->mlx_win = mlx_new_window(game->mlx, WIN_W, WIN_H, "cub3d");
 	game->win->img.img = mlx_new_image(game->mlx, WIN_W, WIN_H);
 	game->win->img.addr = mlx_get_data_addr(game->win->img.img,
-			&game->win->img.bpp, &game->win->img.linelen, &game->win->img.endian);
+			&game->win->img.bpp, &game->win->img.linelen,
+			&game->win->img.endian);
 }
