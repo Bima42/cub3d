@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:31:37 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/13 14:31:38 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/13 14:40:22 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 unsigned int	get_pixel(t_texture *tex, int x, int y)
 {
-	char *dst;
+	char	*dst;
 
 	dst = tex->img.addr + (y * tex->img.linelen + x * (tex->img.bpp / 8));
-	return (*(unsigned int*)dst);
+	return (*(unsigned int *)dst);
 }
 
 void	draw_wall(t_game *game)
@@ -27,8 +27,10 @@ void	draw_wall(t_game *game)
 		game->rays->text_x = WALL_RES - game->rays->text_x;
 	while (game->start < game->end)
 	{
-		game->rays->text_y = (game->start - game->player->height + game->rays->length / 2) * WALL_RES / game->rays->length;
-		game->color = get_pixel(game->texture_pack->wall, game->rays->text_x, game->rays->text_y);
+		game->rays->text_y = WALL_RES / game->rays->length
+			* (game->start - game->player->height + game->rays->length / 2);
+		game->color = get_pixel(game->texture_pack->wall,
+				game->rays->text_x, game->rays->text_y);
 		put_pixel(game->img, game->column, game->start, game->color);
 		game->start++;
 	}
@@ -36,12 +38,14 @@ void	draw_wall(t_game *game)
 
 void	draw(t_game *game)
 {
-	game->rays->dist *= cos(deg_to_rad(game->player->orientation - game->rays->ang));
+	game->rays->dist *= cos(deg_to_rad(game->player->vis - game->rays->ang));
 	game->rays->length = RATIO / game->rays->dist;
 	game->start = game->player->height - game->rays->length / 2 + 1;
 	game->end = game->player->height + game->rays->length / 2;
-	game->start = (game->start < 0 ? 0 : game->start);
-	game->end = (game->end >= WIN_H ? (WIN_H - 1) : game->end);
+	if (game->start < 0)
+		game->start = 0;
+	if (game->end >= WIN_H)
+		game->end = WIN_H - 1;
 	if (game->flag_hori)
 	{
 		game->rays->text_x = fmod(game->rays->h_hit_x, TILE);
