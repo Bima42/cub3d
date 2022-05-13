@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:31:20 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/13 14:31:21 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/13 14:32:50 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	set_hooks(t_game *game)
 {
 	mlx_hook(game->win->mlx_win, 17, STRUCTURENOTIFYMASK, exit_game, game);
 	mlx_hook(game->win->mlx_win, KEYPRESS, KEYPRESSMASK, pressed, game->keys);
-	mlx_hook(game->win->mlx_win, KEYRELEASE, KEYRELEASEMASK, released, game->keys);
+	mlx_hook(game->win->mlx_win, KEYRELEASE, KEYRELEASEMASK,
+		released, game->keys);
 	mlx_loop_hook(game->mlx, engine, game);
 	mlx_loop(game->mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:32:00 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/13 14:32:01 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/13 14:40:02 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	raycasting(t_game *game)
 	double	v_res;
 
 	game->column = 0;
-	game->rays->ang = game->player->orientation + FOV / 2;
+	game->rays->ang = game->player->vis + FOV / 2;
 	while (game->column < WIN_W)
 	{
 		game->flag_hori = 0;
