@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:50:04 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/12 12:04:39 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/13 14:51:06 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	init_keys_n_player(t_game *game)
 	player->y = 0;
 	player->height = WIN_H / 2;
 	game->keys = new;
-	game->player = player;
+	game->p = player;
 }
 
 void	init_game(t_game *game)

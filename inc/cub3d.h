@@ -43,7 +43,7 @@
 # define KEYRELEASEMASK 10
 # define STRUCTURENOTIFYMASK 10001
 
-# define MOVESPEED 10
+# define MS 10
 # define ROTATION 5
 
 typedef struct	s_img
@@ -63,7 +63,7 @@ typedef struct s_game
 	int						column;
 	int						flag_hori;
 	struct s_texture_pack	*texture_pack;
-	struct s_player			*player;
+	struct s_player			*p;
 	struct s_rays			*rays;
     void                    *mlx;
 	int						map_pos_x;
@@ -137,7 +137,7 @@ typedef struct s_player
 	int	next_x;
 	int	next_y;
 	int	height;
-	int	orientation;
+	int	vis;
 }			t_player;
 
 typedef struct s_parse
