@@ -72,6 +72,8 @@ typedef struct s_game
     int                     map_h;
 	int						start;
 	int						end;
+	double					h_res;
+	double					v_res;
 	int						color;
     struct s_window         *win;
     struct s_keys           *keys;
