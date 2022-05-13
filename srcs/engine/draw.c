@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:31:37 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/13 14:40:22 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/13 14:52:48 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	draw_wall(t_game *game)
 	while (game->start < game->end)
 	{
 		game->rays->text_y = WALL_RES / game->rays->length
-			* (game->start - game->player->height + game->rays->length / 2);
+			* (game->start - game->p->height + game->rays->length / 2);
 		game->color = get_pixel(game->texture_pack->wall,
 				game->rays->text_x, game->rays->text_y);
 		put_pixel(game->img, game->column, game->start, game->color);
@@ -38,10 +38,10 @@ void	draw_wall(t_game *game)
 
 void	draw(t_game *game)
 {
-	game->rays->dist *= cos(deg_to_rad(game->player->vis - game->rays->ang));
+	game->rays->dist *= cos(deg_to_rad(game->p->vis - game->rays->ang));
 	game->rays->length = RATIO / game->rays->dist;
-	game->start = game->player->height - game->rays->length / 2 + 1;
-	game->end = game->player->height + game->rays->length / 2;
+	game->start = game->p->height - game->rays->length / 2 + 1;
+	game->end = game->p->height + game->rays->length / 2;
 	if (game->start < 0)
 		game->start = 0;
 	if (game->end >= WIN_H)

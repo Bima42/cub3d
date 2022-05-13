@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:32:00 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/13 14:40:02 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/13 14:52:31 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,16 @@ double	vertical_raycasting(t_game *game)
 	if (game->rays->ang < NORTH || game->rays->ang > SOUTH) // LOOKING RIGHT
 	{
 		game->rays->step_x = TILE;
-		game->rays->hit_x = floor(game->player->x / TILE) * TILE + TILE; //Rounded down float to double
-	//	game->rays->hit_x = floor(game->player->pos_x >> 6) << 6 + TILE;
+		game->rays->hit_x = floor(game->p->x / TILE) * TILE + TILE; //Rounded down float to double
+	//	game->rays->hit_x = floor(game->p->pos_x >> 6) << 6 + TILE;
 	}
 	else
 	{
 		game->rays->step_x = -TILE;
-		game->rays->hit_x = floor(game->player->x / TILE) * TILE - 0.00001; //Rounded down float to double
-	//	game->rays->hit_y = floor(game->player->pos_y >> 6) << 6 - 0.00001;
+		game->rays->hit_x = floor(game->p->x / TILE) * TILE - 0.00001; //Rounded down float to double
+	//	game->rays->hit_y = floor(game->p->pos_y >> 6) << 6 - 0.00001;
 	}
-	game->rays->hit_y = game->player->y + (game->player->x - game->rays->hit_x) * game->rays->tan;
+	game->rays->hit_y = game->p->y + (game->p->x - game->rays->hit_x) * game->rays->tan;
 	if (game->rays->ang == WEST || game->rays->ang == EAST) // LOOK STRAIGHT RIGHT OR LEFT
 		game->rays->step_y = 0;								  // y gap = 0
 	else
@@ -50,8 +50,8 @@ double	vertical_raycasting(t_game *game)
 	if (game->rays->ang >= NORTH && game->rays->ang <= SOUTH)
 		game->rays->step_y *= -1;
 	digital_differential_analyzer(game);
-	return (sqrt(square((game->player->x - game->rays->hit_x))
-		+ square((game->player->y - game->rays->hit_y))));
+	return (sqrt(square((game->p->x - game->rays->hit_x))
+		+ square((game->p->y - game->rays->hit_y))));
 }
 
 double	horizontal_raycasting(t_game *game)
@@ -60,16 +60,16 @@ double	horizontal_raycasting(t_game *game)
 	if (game->rays->ang > EAST && game->rays->ang < WEST) // LOOKING UP
 	{
 		game->rays->step_y = -TILE;
-		game->rays->hit_y = floor(game->player->y / TILE) * TILE - 0.00001; //Rounded down float to double
-	//	game->rays->hit_y = floor(game->player->pos_y >> 6) << 6 - 0.00001;
+		game->rays->hit_y = floor(game->p->y / TILE) * TILE - 0.00001; //Rounded down float to double
+	//	game->rays->hit_y = floor(game->p->pos_y >> 6) << 6 - 0.00001;
 	}
 	else
 	{
 		game->rays->step_y = TILE;
-		game->rays->hit_y = floor(game->player->y / TILE) * TILE + TILE; //Rounded down float to double
-	//	game->rays->hit_y = floor(game->player->pos_y >> 6) << 6 + TILE;
+		game->rays->hit_y = floor(game->p->y / TILE) * TILE + TILE; //Rounded down float to double
+	//	game->rays->hit_y = floor(game->p->pos_y >> 6) << 6 + TILE;
 	}
-	game->rays->hit_x = game->player->x + (game->player->y - game->rays->hit_y) / game->rays->tan;
+	game->rays->hit_x = game->p->x + (game->p->y - game->rays->hit_y) / game->rays->tan;
 	if (game->rays->ang == NORTH || game->rays->ang == SOUTH) // LOOK STRAIGHT UP OR DOWN
 		game->rays->step_x = 0;								  // x gap = 0
 	else
@@ -77,8 +77,8 @@ double	horizontal_raycasting(t_game *game)
 	if (game->rays->ang > WEST)
 		game->rays->step_x *= -1;
 	digital_differential_analyzer(game);
-	return (sqrt(square((game->player->x - game->rays->hit_x))
-		+ square((game->player->y - game->rays->hit_y))));
+	return (sqrt(square((game->p->x - game->rays->hit_x))
+		+ square((game->p->y - game->rays->hit_y))));
 }
 
 
@@ -89,7 +89,7 @@ void	raycasting(t_game *game)
 	double	v_res;
 
 	game->column = 0;
-	game->rays->ang = game->player->vis + FOV / 2;
+	game->rays->ang = game->p->vis + FOV / 2;
 	while (game->column < WIN_W)
 	{
 		game->flag_hori = 0;

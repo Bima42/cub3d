@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:31:42 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/13 14:31:43 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/13 14:43:14 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,15 @@ void	create_image(t_game *game)
 	if (game->img->img != NULL)
 		mlx_destroy_image(game->mlx, game->img->img);
 	game->img->img = mlx_new_image(game->mlx, WIN_W, WIN_H);
-	game->img->addr = mlx_get_data_addr(game->img->img, &game->img->bpp, &game->img->linelen, &game->img->endian);
+	game->img->addr = mlx_get_data_addr(game->img->img,
+			&game->img->bpp, &game->img->linelen, &game->img->endian);
 }
 
 void	draw_background(t_game *game)
 {
 	int				x;
 	int				y;
-	t_texture	color;
+	t_texture		color;
 
 	y = -1;
 	color.R = 0;
@@ -47,7 +48,8 @@ int	engine(t_game *game)
 	draw_background(game);
 	player_move(game);
 	raycasting(game);
-	mlx_put_image_to_window(game->mlx, game->win->mlx_win, game->img->img, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->win->mlx_win,
+		game->img->img, 0, 0);
 	mlx_do_sync(game->mlx);
 	return (0);
 }

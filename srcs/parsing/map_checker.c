@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:44:22 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/12 12:02:59 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/13 14:52:07 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,16 +87,16 @@ void	get_max(char **map, int *max_y, int *max_x)
 
 void	get_player_infos(t_game *game)
 {
-	if (game->player->orientation == 'N')
-		game->player->orientation = NORTH;
-	else if (game->player->orientation == 'S')
-		game->player->orientation = SOUTH;
-	else if (game->player->orientation == 'E')
-		game->player->orientation = EAST;
-	else if (game->player->orientation == 'W')
-		game->player->orientation = WEST;
-	game->player->next_x = game->player->x;
-	game->player->next_y = game->player->y;
+	if (game->p->vis == 'N')
+		game->p->vis = NORTH;
+	else if (game->p->vis == 'S')
+		game->p->vis = SOUTH;
+	else if (game->p->vis == 'E')
+		game->p->vis = EAST;
+	else if (game->p->vis == 'W')
+		game->p->vis = WEST;
+	game->p->next_x = game->p->x;
+	game->p->next_y = game->p->y;
 }
 
 int	find_player_pos(char **map, t_game *game, t_parse *control)
@@ -113,9 +113,9 @@ int	find_player_pos(char **map, t_game *game, t_parse *control)
 			if (map[y][x] == 'N' || map[y][x] == 'S'
 				|| map[y][x] == 'W' || map[y][x] == 'E')
 			{
-				game->player->x = x * TILE + (TILE / 2);
-				game->player->y = y * TILE + (TILE / 2);
-				game->player->orientation = map[y][x];
+				game->p->x = x * TILE + (TILE / 2);
+				game->p->y = y * TILE + (TILE / 2);
+				game->p->vis = map[y][x];
 				control->spawn++;
 			}
 			x++;
