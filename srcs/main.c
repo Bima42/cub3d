@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:47:24 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/13 15:06:59 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/14 12:32:54 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,19 @@ void	exit_n_display(char *str)
 void	destroy_struct(t_game *game)
 {
 	free_array(game->map);
-	free(game->texture_pack->no->path);
-	free(game->texture_pack->so->path);
-	free(game->texture_pack->ea->path);
-	free(game->texture_pack->we->path);
-	free(game->texture_pack->ceiling->path);
-	free(game->texture_pack->floor->path);
-	free(game->texture_pack->no);
-	free(game->texture_pack->so);
-	free(game->texture_pack->ea);
-	free(game->texture_pack->we);
-	free(game->texture_pack->ceiling);
-	free(game->texture_pack->floor);
-	free(game->texture_pack);
+	free(game->text->no->path);
+	free(game->text->so->path);
+	free(game->text->ea->path);
+	free(game->text->we->path);
+	free(game->text->ceiling->path);
+	free(game->text->floor->path);
+	free(game->text->no);
+	free(game->text->so);
+	free(game->text->ea);
+	free(game->text->we);
+	free(game->text->ceiling);
+	free(game->text->floor);
+	free(game->text);
 	free(game->p);
 	free(game->rays);
 	free(game);

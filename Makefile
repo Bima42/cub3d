@@ -23,6 +23,7 @@ SRCS = 	srcs/main.c \
 		srcs/parsing/game_infos.c \
 		srcs/parsing/tools.c \
 		srcs/parsing/map_checker.c \
+		srcs/parsing/player.c \
 		srcs/get_next_line/get_next_line.c \
 		srcs/get_next_line/get_next_line_utils.c \
 		srcs/video/window_init.c \
@@ -41,6 +42,7 @@ all: subsystems $(NAME)
 	@$(CC) $(CFLAGS) -Imlx -c -o $@ $<
 
 subsystems:
+	make -C $(MLX_PATH) all
 	make -C $(LIBFT_PATH) all
 
 $(NAME): $(OBJS)

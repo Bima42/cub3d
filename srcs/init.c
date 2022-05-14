@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:50:04 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/13 14:51:06 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/14 12:33:22 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ void	init_texture_pk_dir(t_game *game)
 	we = malloc(sizeof(t_texture));
 	if (!we)
 		exit_n_display("malloc failed\n");
-	game->texture_pack->no = no;
-	game->texture_pack->so = so;
-	game->texture_pack->ea = ea;
-	game->texture_pack->we = we;
+	game->text->no = no;
+	game->text->so = so;
+	game->text->ea = ea;
+	game->text->we = we;
 }
 
 void	init_texture_pk_dir_next(t_game *game)
@@ -48,25 +48,25 @@ void	init_texture_pk_dir_next(t_game *game)
 	floor = malloc(sizeof(t_texture));
 	if (!floor)
 		exit_n_display("malloc failed\n");
-	game->texture_pack->ceiling = ceiling;
-	game->texture_pack->floor = floor;
+	game->text->ceiling = ceiling;
+	game->text->floor = floor;
 }
 
 void	set_texture_pack(t_game *game)
 {
 	game->map = NULL;
-	game->texture_pack->no->path = NULL;
-	game->texture_pack->so->path = NULL;
-	game->texture_pack->ea->path = NULL;
-	game->texture_pack->we->path = NULL;
-	game->texture_pack->ceiling->path = NULL;
-	game->texture_pack->ceiling->R = 0;
-	game->texture_pack->ceiling->G = 0;
-	game->texture_pack->ceiling->B = 0;
-	game->texture_pack->floor->path = NULL;
-	game->texture_pack->floor->R = 0;
-	game->texture_pack->floor->G = 0;
-	game->texture_pack->floor->B = 0;
+	game->text->no->path = NULL;
+	game->text->so->path = NULL;
+	game->text->ea->path = NULL;
+	game->text->we->path = NULL;
+	game->text->ceiling->path = NULL;
+	game->text->ceiling->R = 0;
+	game->text->ceiling->G = 0;
+	game->text->ceiling->B = 0;
+	game->text->floor->path = NULL;
+	game->text->floor->R = 0;
+	game->text->floor->G = 0;
+	game->text->floor->B = 0;
 }
 
 void	init_keys_n_player(t_game *game)
@@ -98,7 +98,7 @@ void	init_game(t_game *game)
 	texture_pack = malloc(sizeof(t_texture_pack));
 	if (!texture_pack)
 		exit_n_display("malloc failed\n");
-	game->texture_pack = texture_pack;
+	game->text = texture_pack;
 	init_keys_n_player(game);
 	init_texture_pk_dir(game);
 	init_texture_pk_dir_next(game);

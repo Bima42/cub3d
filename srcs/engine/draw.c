@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:31:37 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/13 14:52:48 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/14 12:33:47 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ unsigned int	get_pixel(t_texture *tex, int x, int y)
 
 void	draw_wall(t_game *game)
 {
-	if (game->texture_pack->wall == game->texture_pack->so
-		|| game->texture_pack->wall == game->texture_pack->we)
+	if (game->text->wall == game->text->so
+		|| game->text->wall == game->text->we)
 		game->rays->text_x = WALL_RES - game->rays->text_x;
 	while (game->start < game->end)
 	{
 		game->rays->text_y = WALL_RES / game->rays->length
 			* (game->start - game->p->height + game->rays->length / 2);
-		game->color = get_pixel(game->texture_pack->wall,
+		game->color = get_pixel(game->text->wall,
 				game->rays->text_x, game->rays->text_y);
 		put_pixel(game->img, game->column, game->start, game->color);
 		game->start++;
@@ -50,17 +50,17 @@ void	draw(t_game *game)
 	{
 		game->rays->text_x = fmod(game->rays->h_hit_x, TILE);
 		if (game->rays->ang > EAST && game->rays->ang < WEST)
-			game->texture_pack->wall = game->texture_pack->so;
+			game->text->wall = game->text->so;
 		else
-			game->texture_pack->wall = game->texture_pack->no;
+			game->text->wall = game->text->no;
 	}
 	else
 	{
 		game->rays->text_x = fmod(game->rays->v_hit_y, TILE);
 		if (game->rays->ang >= NORTH && game->rays->ang <= SOUTH)
-			game->texture_pack->wall = game->texture_pack->ea;
+			game->text->wall = game->text->ea;
 		else
-			game->texture_pack->wall = game->texture_pack->we;
+			game->text->wall = game->text->we;
 	}
 	draw_wall(game);
 }
