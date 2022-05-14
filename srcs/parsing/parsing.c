@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:43:51 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/08 22:15:16 by ypetruzz         ###   ########.fr       */
+/*   Updated: 2022/05/14 12:40:07 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,12 @@ int	parsing(char *path, t_game *game)
 	if (!file_format(path, &control))
 		return (error_message("File format error. Use .cub maps only\n", 0));
 	if (!game_infos(game, &control))
-		return (error_message("Datas might be missing, check data format and try again\n", 0));
-	if (!check_data(game->texture_pack, game->texture_pack->ceiling, 0))
-		return (error_message("Datas might be wrong, respect the format and try again\n", 0));
+		return (error_message("Check data format and try again\n", 0));
+	if (!check_data(game->text, game->text->ceiling, 0))
+		return (error_message("Data error: check format and try again\n", 0));
 	if (!check_map(game->map, game, &control))
-		return (error_message("A map error has been caught, make sure your map is valid and try again\n", 0));
+		return (error_message("Map error: make sure your map is valid\n", 0));
 	if (!check_texture_format(game))
-		return (error_message("A texture format error has been detected, make sure the textures are .xpm\n", 0));
+		return (error_message("Texture error: textures need .xpm format\n", 0));
 	return (1);
 }

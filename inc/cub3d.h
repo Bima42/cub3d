@@ -62,7 +62,7 @@ typedef struct s_game
 	char					**map;
 	int						column;
 	int						flag_hori;
-	struct s_texture_pack	*texture_pack;
+	struct s_texture_pack	*text;
 	struct s_player			*p;
 	struct s_rays			*rays;
     void                    *mlx;
@@ -186,9 +186,11 @@ void	dup_array(char **tab, char **tmp);
 int		control_axis_x(char **map, int y, int max_y);
 int		control_axis_x(char **map, int x, int max_x);
 void	get_max(char **map, int *max_y, int *max_x);
-void	get_player_orientation(t_game *game);
-int		find_player_pos(char **map, t_game *game, t_parse *control);
 int     check_map(char **map, t_game *game, t_parse *control);
+
+//PARSING - player.c
+void	get_player_infos(t_game *game);
+int		find_player_pos(char **map, t_game *game, t_parse *control);
 
 //INIT - init.c
 void	init_texture_pk_dir(t_game *game);

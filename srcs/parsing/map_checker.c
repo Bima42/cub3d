@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:44:22 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/13 14:52:07 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/14 12:20:20 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,46 +83,6 @@ void	get_max(char **map, int *max_y, int *max_x)
 		*max_x = 0;
 	}
 	*max_x = greater_value;
-}
-
-void	get_player_infos(t_game *game)
-{
-	if (game->p->vis == 'N')
-		game->p->vis = NORTH;
-	else if (game->p->vis == 'S')
-		game->p->vis = SOUTH;
-	else if (game->p->vis == 'E')
-		game->p->vis = EAST;
-	else if (game->p->vis == 'W')
-		game->p->vis = WEST;
-	game->p->next_x = game->p->x;
-	game->p->next_y = game->p->y;
-}
-
-int	find_player_pos(char **map, t_game *game, t_parse *control)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	while (map[y][0] != '\0')
-	{
-		x = 0;
-		while (map[y][x] != '\0')
-		{
-			if (map[y][x] == 'N' || map[y][x] == 'S'
-				|| map[y][x] == 'W' || map[y][x] == 'E')
-			{
-				game->p->x = x * TILE + (TILE / 2);
-				game->p->y = y * TILE + (TILE / 2);
-				game->p->vis = map[y][x];
-				control->spawn++;
-			}
-			x++;
-		}
-		y++;
-	}
-	return (1);
 }
 
 int	check_map(char **map, t_game *game, t_parse *control)
