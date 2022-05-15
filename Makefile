@@ -42,14 +42,15 @@ all: subsystems $(NAME)
 	@$(CC) $(CFLAGS) -Imlx -c -o $@ $<
 
 subsystems:
-	make -C $(MLX_PATH) all
-	make -C $(LIBFT_PATH) all
+	@make -C $(MLX_PATH) all
+	@make -C $(LIBFT_PATH) all
 
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJS) $(MLX_LIB) $(LIBFT_LIB) -o $(NAME)
 
 clean:
 	@make -C $(LIBFT_PATH) clean
+	@make -C $(MLX_PATH) clean
 	@rm -f $(OBJS)
 
 fclean: clean

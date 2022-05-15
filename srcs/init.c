@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:50:04 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/14 12:33:22 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/15 15:49:03 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,28 +69,6 @@ void	set_texture_pack(t_game *game)
 	game->text->floor->B = 0;
 }
 
-void	init_keys_n_player(t_game *game)
-{
-	t_keys		*new;
-	t_player	*player;
-
-	new = malloc(sizeof(t_keys));
-	new->movefor = 0;
-	new->moveback = 0;
-	new->moveleft = 0;
-	new->moveright = 0;
-	new->turnleft = 0;
-	new->turnright = 0;
-	player = malloc(sizeof(t_player));
-	if (!player)
-		exit_n_display("malloc failed\n");
-	player->x = 0;
-	player->y = 0;
-	player->height = WIN_H / 2;
-	game->keys = new;
-	game->p = player;
-}
-
 void	init_game(t_game *game)
 {
 	t_texture_pack	*texture_pack;
@@ -99,7 +77,9 @@ void	init_game(t_game *game)
 	if (!texture_pack)
 		exit_n_display("malloc failed\n");
 	game->text = texture_pack;
-	init_keys_n_player(game);
+	ft_bzero(&game->keys, sizeof(t_keys));
+	ft_bzero(&game->p, sizeof(t_player));
+	game->p.height = WIN_H / 2;
 	init_texture_pk_dir(game);
 	init_texture_pk_dir_next(game);
 	set_texture_pack(game);
