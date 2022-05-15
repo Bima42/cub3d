@@ -146,11 +146,11 @@ typedef struct s_game
 	double					v_res;
 	int						color;
 	t_texture_pack			*text;
-	t_player				p;
-	t_rays					*rays;
     t_window         		*win;
-    t_keys           		keys;
     t_img            		*img;
+    t_keys           		keys;
+	t_player				p;
+	t_rays					rays;
 }			t_game;
 
 //PARSING - parsing.c

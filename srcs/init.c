@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:50:04 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/15 15:49:03 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/15 15:52:50 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	init_game(t_game *game)
 	game->text = texture_pack;
 	ft_bzero(&game->keys, sizeof(t_keys));
 	ft_bzero(&game->p, sizeof(t_player));
-	game->p.height = WIN_H / 2;
+	ft_bzero(&game->rays, sizeof(t_player));
 	init_texture_pk_dir(game);
 	init_texture_pk_dir_next(game);
 	set_texture_pack(game);
