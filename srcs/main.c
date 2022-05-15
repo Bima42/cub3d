@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:47:24 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/15 15:37:06 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/15 15:54:10 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	destroy_struct(t_game *game)
 	free(game->text->floor);
 	free(game->text);
 //	free(game->p);
-	free(game->rays);
+//	free(game->rays);
 	free(game);
 }
 

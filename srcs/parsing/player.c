@@ -6,7 +6,7 @@
 /*   By: tpauvret <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 12:19:00 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/15 15:46:55 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/15 15:53:07 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	get_player_infos(t_game *game)
 		game->p.vis = WEST;
 	game->p.next_x = game->p.x;
 	game->p.next_y = game->p.y;
+	game->p.height = WIN_H / 2;
 }
 
 int	find_player_pos(char **map, t_game *game, t_parse *control)
