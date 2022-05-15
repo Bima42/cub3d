@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:31:20 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/15 15:42:20 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/15 16:30:30 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	exit_game(t_game *game)
 {
-	(void)game;
+	destroy_struct(game, NULL);
 	exit(0);
 }
 

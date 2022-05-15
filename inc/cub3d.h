@@ -180,7 +180,7 @@ int		game_infos(t_game *game, t_parse *control);
 int		is_w_space(char c);
 void	skip_white_space(char *str, int *i);
 void	vertical_skip_white_space(char **str, int *i, int x);
-void	free_array(char **tab);
+void	free_map(t_game *game, char **map);
 void	dup_array(char **tab, char **tmp);
 
 //PARSING - map_checker.c
@@ -201,7 +201,7 @@ void	init_game(t_game *game);
 
 //MAIN - main.c
 void	exit_n_display(char *str);
-void	destroy_struct(t_game *game);
+void	destroy_struct(t_game *game, char *str);
 
 //VIDEO - video_init.c
 void    load_tex(t_game *game);
