@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:44:32 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/07 14:20:08 by ypetruzz         ###   ########.fr       */
+/*   Updated: 2022/05/15 16:25:37 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,20 @@ void	vertical_skip_white_space(char **str, int *i, int x)
 		*i += 1;
 }
 
-void	free_array(char **tab)
+void	free_map(t_game *game, char **map)
 {
 	int	i;
 
-	i = -1;
-	if (!tab)
+	i = 0;
+	if (!map)
 		return ;
-	while (tab[++i])
-		free(tab[i]);
-	free(tab);
+	while (map[i] && i < game->map_h)
+	{
+		free(map[i++]);
+//		if (!map[i])
+//			break ;
+	}
+	free(map);
 }
 
 void	dup_array(char **tab, char **tmp)

@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:47:24 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/15 15:54:10 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/15 16:30:22 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	exit_n_display(char *str)
 	exit(0);
 }
 
-void	destroy_struct(t_game *game)
+void	destroy_struct(t_game *game, char *str)
 {
-	free_array(game->map);
+	free_map(game, game->map);
 	free(game->text->no->path);
 	free(game->text->so->path);
 	free(game->text->ea->path);
@@ -34,9 +34,8 @@ void	destroy_struct(t_game *game)
 	free(game->text->ceiling);
 	free(game->text->floor);
 	free(game->text);
-//	free(game->p);
-//	free(game->rays);
-	free(game);
+	if (str)
+		write(1, str, ft_strlen(str));
 }
 
 int	main(int argc, char **argv)
@@ -48,10 +47,13 @@ int	main(int argc, char **argv)
 	{
 		init_game(&game);
 		if (!parsing(argv[1], &game))
-			exit_n_display("Error\n");
-		video_init(&game);
-		window_init(&game);
-		set_hooks(&game);
+			destroy_struct(&game, "Error\n");
+		else
+		{
+			video_init(&game);
+			window_init(&game);
+			set_hooks(&game);
+		}
 	}
 	else
 		write(1, "Wrong arguments\n", 16);
