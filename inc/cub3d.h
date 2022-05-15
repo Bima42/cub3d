@@ -57,28 +57,6 @@ typedef struct	s_img
 	int			height;
 }				t_img;
 
-typedef struct s_game
-{
-	char					**map;
-	int						column;
-	int						flag_hori;
-	struct s_texture_pack	*text;
-	struct s_player			*p;
-	struct s_rays			*rays;
-    void                    *mlx;
-	int						map_pos_x;
-	int						map_pos_y;
-    int                     map_w;
-    int                     map_h;
-	int						start;
-	int						end;
-	double					h_res;
-	double					v_res;
-	int						color;
-    struct s_window         *win;
-    struct s_keys           *keys;
-    struct s_img            *img;
-}			t_game;
 
 typedef struct s_rays
 {
@@ -152,6 +130,29 @@ typedef struct s_parse
     int rgb_err;
 }           t_parse;
 
+typedef struct s_game
+{
+	char					**map;
+	int						column;
+	int						flag_hori;
+    void                    *mlx;
+	int						map_pos_x;
+	int						map_pos_y;
+    int                     map_w;
+    int                     map_h;
+	int						start;
+	int						end;
+	double					h_res;
+	double					v_res;
+	int						color;
+	t_texture_pack			*text;
+	t_player				p;
+	t_rays					*rays;
+    t_window         		*win;
+    t_keys           		keys;
+    t_img            		*img;
+}			t_game;
+
 //PARSING - parsing.c
 int		parsing(char *path, t_game *game);
 void	init_parse(t_parse *control);
@@ -196,7 +197,6 @@ int		find_player_pos(char **map, t_game *game, t_parse *control);
 void	init_texture_pk_dir(t_game *game);
 void	init_texture_pk_dir_next(t_game *game);
 void	set_texture_pack(t_game *game);
-void	init_keys_n_player(t_game *game);
 void	init_game(t_game *game);
 
 //MAIN - main.c
