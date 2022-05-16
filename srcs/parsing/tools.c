@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:44:32 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/15 16:25:37 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/16 12:07:43 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,7 @@ void	free_map(t_game *game, char **map)
 	if (!map)
 		return ;
 	while (map[i] && i < game->map_h)
-	{
 		free(map[i++]);
-//		if (!map[i])
-//			break ;
-	}
 	free(map);
 }
 

@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:50:04 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/15 15:52:50 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/16 12:20:20 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ void	set_texture_pack(t_game *game)
 	game->text->ea->path = NULL;
 	game->text->we->path = NULL;
 	game->text->ceiling->path = NULL;
-	game->text->ceiling->R = 0;
-	game->text->ceiling->G = 0;
-	game->text->ceiling->B = 0;
+	game->text->ceiling->r = 0;
+	game->text->ceiling->g = 0;
+	game->text->ceiling->b = 0;
 	game->text->floor->path = NULL;
-	game->text->floor->R = 0;
-	game->text->floor->G = 0;
-	game->text->floor->B = 0;
+	game->text->floor->r = 0;
+	game->text->floor->g = 0;
+	game->text->floor->b = 0;
 }
 
 void	init_game(t_game *game)

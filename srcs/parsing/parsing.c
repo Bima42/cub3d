@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/02 15:43:51 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/15 16:22:24 by tpauvret         ###   ########.fr       */
+/*   Created: 2022/05/16 12:24:11 by tpauvret          #+#    #+#             */
+/*   Updated: 2022/05/16 12:24:13 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,15 @@ int	check_data(t_texture_pack *pack, t_texture *texture, int count)
 		return (0);
 	if (split[2])
 	{
-		texture->R = ft_atoi(split[0]);
-		texture->G = ft_atoi(split[1]);
-		texture->B = ft_atoi(split[2]);
+		texture->r = ft_atoi(split[0]);
+		texture->g = ft_atoi(split[1]);
+		texture->b = ft_atoi(split[2]);
 	}
-	if (texture->R < 0 || texture->R > 255)
+	if (texture->r < 0 || texture->r > 255)
 		return (0);
-	if (texture->G < 0 || texture->G > 255)
+	if (texture->g < 0 || texture->g > 255)
 		return (0);
-	if (texture->B < 0 || texture->B > 255)
+	if (texture->b < 0 || texture->b > 255)
 		return (0);
 	free_array(split);
 	return (check_data(pack, pack->floor, ++count));
@@ -70,5 +70,6 @@ int	parsing(char *path, t_game *game)
 		return (error_message("Map error: make sure your map is valid\n", 0));
 	if (!check_texture_format(game))
 		return (error_message("Texture error: textures need .xpm format\n", 0));
+	game->ratio = TILE * ((WIN_W / 2) / tan(deg_to_rad(FOV / 2)));
 	return (1);
 }
