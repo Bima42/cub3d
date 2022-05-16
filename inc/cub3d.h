@@ -44,7 +44,7 @@
 # define STRUCTURENOTIFYMASK 10001
 
 # define MS 10
-# define ROTATION 5
+# define ROTATION 5.0
 
 typedef struct	s_img
 {
@@ -112,12 +112,12 @@ typedef struct s_texture
 
 typedef struct s_player
 {
-	int	x;
-	int	y;
-	int	next_x;
-	int	next_y;
-	int	height;
-	int	vis;
+	double	x;
+	double	y;
+	double	next_x;
+	double	next_y;
+	double	height;
+	double	vis;
 }			t_player;
 
 typedef struct s_parse
