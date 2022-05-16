@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/13 14:31:42 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/14 12:33:34 by tpauvret         ###   ########.fr       */
+/*   Created: 2022/05/16 12:24:20 by tpauvret          #+#    #+#             */
+/*   Updated: 2022/05/16 12:24:21 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	draw_background(t_game *game)
 	t_texture		color;
 
 	y = -1;
-	color.R = 0;
-	color.G = 0;
-	color.B = 0;
+	color.r = 0;
+	color.g = 0;
+	color.b = 0;
 	define_color(&color, game->text->ceiling);
 	while (++y < WIN_H)
 	{
@@ -38,7 +38,7 @@ void	draw_background(t_game *game)
 		if (y == WIN_H / 2)
 			define_color(&color, game->text->floor);
 		while (++x < WIN_W)
-			put_pixel(game->img, x, y, color_picker(color.R, color.G, color.B));
+			put_pixel(game->img, x, y, color_picker(color.r, color.g, color.b));
 	}
 }
 

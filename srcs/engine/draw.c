@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:31:37 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/15 15:53:44 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/16 12:13:56 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	draw_wall(t_game *game)
 void	draw(t_game *game)
 {
 	game->rays.dist *= cos(deg_to_rad(game->p.vis - game->rays.ang));
-	game->rays.length = RATIO / game->rays.dist;
+	game->rays.length = game->ratio / game->rays.dist;
 	game->start = game->p.height - game->rays.length / 2 + 1;
 	game->end = game->p.height + game->rays.length / 2;
 	if (game->start < 0)

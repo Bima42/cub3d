@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*	                                                                        */
+/*	                                                    :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*	                                                +:+ +:+         +:+     */
+/*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+	   +#+        */
+/*	                                            +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/16 12:08:05 by tpauvret	      #+#    #+#             */
+/*   Updated: 2022/05/16 12:23:35 by tpauvret         ###   ########.fr       */
+/*	                                                                        */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -23,7 +35,6 @@
 # define FOV 60.0
 # define TILE 64
 # define WALL_RES 64
-# define RATIO TILE * ((WIN_W/2) / tan(deg_to_rad(FOV / 2)))
 
 # define ESCAPE 53
 # define UP 126
@@ -46,7 +57,7 @@
 # define MS 10
 # define ROTATION 5.0
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void		*img;
 	char		*addr;
@@ -56,7 +67,6 @@ typedef struct	s_img
 	int			width;
 	int			height;
 }				t_img;
-
 
 typedef struct s_rays
 {
@@ -76,38 +86,38 @@ typedef struct s_rays
 
 typedef struct s_window
 {
-	void                    *mlx_win;
-    struct s_img            img;
-}           t_window;
+	void			*mlx_win;
+	struct s_img	img;
+}			t_window;
 
-typedef struct	s_keys
+typedef struct s_keys
 {
-	int			movefor;
-	int			moveback;
-	int			moveleft;
-	int			moveright;
-	int			turnleft;
-	int			turnright;
+	int	movefor;
+	int	moveback;
+	int	moveleft;
+	int	moveright;
+	int	turnleft;
+	int	turnright;
 }				t_keys;
 
 typedef struct s_texture_pack
 {
-	struct s_texture *no;
-	struct s_texture *so;
-	struct s_texture *ea;
-	struct s_texture *we;
-	struct s_texture *wall;
-	struct s_texture *ceiling;
-	struct s_texture *floor;
+	struct s_texture	*no;
+	struct s_texture	*so;
+	struct s_texture	*ea;
+	struct s_texture	*we;
+	struct s_texture	*wall;
+	struct s_texture	*ceiling;
+	struct s_texture	*floor;
 }			t_texture_pack;
 
 typedef struct s_texture
 {
-	char	        *path;
-    struct s_img    img;
-	int		        R;
-	int		        G;
-	int		        B;
+	char			*path;
+	struct s_img	img;
+	int				r;
+	int				g;
+	int				b;
 }			t_texture;
 
 typedef struct s_player
@@ -122,41 +132,42 @@ typedef struct s_player
 
 typedef struct s_parse
 {
-    int fd;
-    int spawn;
-    int wall_err;
-    int path_err;
-    int id_err;
-    int rgb_err;
-}           t_parse;
+	int	fd;
+	int	spawn;
+	int	wall_err;
+	int	path_err;
+	int	id_err;
+	int	rgb_err;
+}			t_parse;
 
 typedef struct s_game
 {
-	char					**map;
-	int						column;
-	int						flag_hori;
-    void                    *mlx;
-	int						map_pos_x;
-	int						map_pos_y;
-    int                     map_w;
-    int                     map_h;
-	int						start;
-	int						end;
-	double					h_res;
-	double					v_res;
-	int						color;
-	t_texture_pack			*text;
-    t_window         		*win;
-    t_img            		*img;
-    t_keys           		keys;
-	t_player				p;
-	t_rays					rays;
+	char			**map;
+	int				column;
+	int				flag_hori;
+	void			*mlx;
+	int				map_pos_x;
+	int				map_pos_y;
+	int				map_w;
+	int				map_h;
+	int				start;
+	int				end;
+	double			h_res;
+	double			v_res;
+	double			ratio;
+	int				color;
+	t_texture_pack	*text;
+	t_window		*win;
+	t_img			*img;
+	t_keys			keys;
+	t_player		p;
+	t_rays			rays;
 }			t_game;
 
 //PARSING - parsing.c
 int		parsing(char *path, t_game *game);
 void	init_parse(t_parse *control);
-int     error_message(char *msg, int ret);
+int		error_message(char *msg, int ret);
 
 //PARSING - collect_map.c
 void	realloc_string(char **map, int row, int len);
@@ -168,7 +179,7 @@ char	**collect_map(char *line, int fd);
 //PARSING - file_format.c
 int		check_file_format(char *str, char *str2, int start);
 int		file_format(char *path, t_parse *control);
-int     check_texture_format(t_game *game);
+int		check_texture_format(t_game *game);
 
 //PARSING - game_infos.c
 int		check_all_datas(t_game *game);
@@ -187,7 +198,7 @@ void	dup_array(char **tab, char **tmp);
 int		control_axis_x(char **map, int y, int max_y);
 int		control_axis_x(char **map, int x, int max_x);
 void	get_max(char **map, int *max_y, int *max_x);
-int     check_map(char **map, t_game *game, t_parse *control);
+int		check_map(char **map, t_game *game, t_parse *control);
 
 //PARSING - player.c
 void	get_player_infos(t_game *game);
@@ -204,24 +215,24 @@ void	exit_n_display(char *str);
 void	destroy_struct(t_game *game, char *str);
 
 //VIDEO - video_init.c
-void    load_tex(t_game *game);
-void    load_tex_bis(t_game *game);
-void    check_dim(t_game *game);
-int     video_init(t_game *game);
+void	load_tex(t_game *game);
+void	load_tex_bis(t_game *game);
+void	check_dim(t_game *game);
+int		video_init(t_game *game);
 
 //VIDEO - window_init.c
 void	init_graphics(t_game *game);
-void    window_init(t_game *game);
+void	window_init(t_game *game);
 
 //MAIN - hooks.c
-void    set_hooks(t_game *game);
-int     pressed(int keycode, t_keys *keys);
-int     released(int keycode, t_keys *keys);
+void	set_hooks(t_game *game);
+int		pressed(int keycode, t_keys *keys);
+int		released(int keycode, t_keys *keys);
 
 //ENGINE - engine.c
 void	create_image(t_game *game);
 void	draw_background(t_game *game);
-int     engine(t_game *game);
+int		engine(t_game *game);
 
 //ENGINE - raycasting.c
 void	digital_differential_analyzer(t_game *game);
@@ -234,7 +245,8 @@ double	deg_to_rad(double value);
 double	square(double value);
 void	put_pixel(t_img *img, int x, int y, int color);
 void	define_color(t_texture *color, t_texture *zone);
-int     color_picker(unsigned char red, unsigned char green, unsigned char blue);
+int		color_picker(unsigned char red,
+			unsigned char green, unsigned char blue);
 
 //ENGINE - motion.c
 void	move_if_allowed(t_game *game);

@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:31:49 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/13 14:31:50 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/16 12:19:46 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ double	square(double value)
 
 void	define_color(t_texture *color, t_texture *zone)
 {
-	color->R = zone->R;
-	color->G = zone->G;
-	color->B = zone->B;
+	color->r = zone->r;
+	color->g = zone->g;
+	color->b = zone->b;
 }
 
 void	put_pixel(t_img *img, int x, int y, int color)
