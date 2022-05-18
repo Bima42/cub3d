@@ -3,9 +3,12 @@ The problematic was : re-create a Wolfenstein-3D like, using the MLX library.
 Only C was allowed.
 
 ## Install
-```git clone```
-```make```
-```./cub3d map.cub```
+
+```
+git clone
+make
+./cub3d map.cub
+```
 
 Note : Use W, A, S, D key to move. Use left and right arrow to rotate camera. Esc quit the game.
 
@@ -61,8 +64,11 @@ The following illustrates steps:
 	- Add the angle increment so that the ray moves to the right
 	- Repeat step 2 and 3 for each subsequent column until all rays are cast.
 
-This figure show a really good method to understand how checking horizontal intersections.
+This figure show a really good method to understand how checking horizontal and vertical intersections.
 
+![Horizontal_check](/assets/horizontal_check.png)
+
+![Vertical_check](/assets/vertical_check.png)
 
 When horizontal and vertical intersections are merged, you have to check the lowest distance between player and wall using Pythagore theorem.
 Now you know which side of the wall you have to drawn.
