@@ -2,19 +2,28 @@ NAME = cub3d
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -g
-
-LIBFT_PATH = libft/
-
-LIBFT_LIB = $(LIBFT_PATH)libft.a
+CFLAGS = -Wall -Wextra -Werror
 
 MLX_PATH = mlx/
 
 MLX_LIB = $(MLX_PATH)libmlx.a
 
-MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework Appkit
+MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
-SRCS = 	srcs/main.c \
+LIBFT_PATH = libft/
+
+LIBFT_LIB = $(LIBFT_PATH)libft.a
+
+Y = "\033[33m"
+R = "\033[31m"
+G = "\033[32m"
+B = "\033[34m"
+X = "\033[0m"
+UP = "\033[A"
+CUT = "\033[K"
+
+CFILES = \
+		srcs/main.c \
 		srcs/init.c \
 		srcs/hook.c \
 		srcs/parsing/parsing.c \
@@ -34,27 +43,38 @@ SRCS = 	srcs/main.c \
 		srcs/engine/draw.c \
 		srcs/engine/motion.c
 
-OBJS = $(SRCS:.c=.o)
+OBJECTS = $(CFILES:.c=.o)
 
 all: subsystems $(NAME)
 
 %.o : %.c
+	@echo $(Y)Compiling [$<]...$(X)
 	@$(CC) $(CFLAGS) -Imlx -c -o $@ $<
+	@printf $(UP)$(CUT)
 
 subsystems:
-	@make -C $(MLX_PATH) all
-	@make -C $(LIBFT_PATH) all
+	@echo $(B)
+	make -C $(MLX_PATH) all
+	@echo $(B)
+	make -C $(LIBFT_PATH) all
 
-$(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJS) $(MLX_LIB) $(LIBFT_LIB) -o $(NAME)
+$(NAME): $(OBJECTS)
+	@echo $(Y)Compiling [$(CFILES)]...$(X)
+	@echo $(G)Finished [$(CFILES)]$(X)
+	@echo
+	@echo $(Y)Compiling [$(NAME)]...$(X)
+	@$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJECTS) $(MLX_LIB) $(LIBFT_LIB) -o $(NAME)
+	@echo $(G)Finished [$(NAME)]$(X)
 
 clean:
-	@make -C $(LIBFT_PATH) clean
 	@make -C $(MLX_PATH) clean
-	@rm -f $(OBJS)
+	@make -C $(LIBFT_PATH) clean
+	@rm -f $(OBJECTS)
+	@echo $(R)Removed [$(OBJECTS)]$(X)
 
 fclean: clean
 	@rm -f $(NAME)
+	@echo $(R)Removed [$(NAME)]$(X)
 
 re: fclean all
 
