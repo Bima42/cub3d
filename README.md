@@ -18,15 +18,15 @@ Then, we split works in two parts : initialisation part (graphics, mlx ...) and 
 
 ## Parsing
 There is some important point to note :
-	- map file is .cub only
-	- this map file is strict :
-		- begin by texture path (N, S, E, W)
-		- then some rgb data for ceiling and floor
-		- empty lines can be found between those datas
-		- map architecture
-	- map :
-		- must be surrounded by '1'
-		- only one player spawn (N, S, E or W indicate player orientation)
+- map file is .cub only
+- this map file is strict :
+	- begin by texture path (N, S, E, W)
+	- then some rgb data for ceiling and floor
+	- empty lines can be found between those datas
+	- map architecture
+- map :
+	- must be surrounded by '1'
+	- only one player spawn (N, S, E or W indicate player orientation)
 
 Strategy use for map checking : for every rows and colums (x and y)
 	- start with skip white spaces
