@@ -5,7 +5,7 @@ Only C was allowed.
 ## Install
 
 ```
-git clone
+git clone git@github.com:Bima42/cub3d.git
 make
 ./cub3d map.cub
 ```
