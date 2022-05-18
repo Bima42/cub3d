@@ -18,22 +18,22 @@ Then, we split works in two parts : initialisation part (graphics, mlx ...) and 
 
 ## Parsing
 There is some important point to note :
-- map file is .cub only
-- this map file is strict :
-	- begin by texture path (N, S, E, W)
-	- then some rgb data for ceiling and floor
-	- empty lines can be found between those datas
-	- map architecture
-- map :
-	- must be surrounded by '1'
-	- only one player spawn (N, S, E or W indicate player orientation)
+- Map file is .cub only
+- This map file is strict :
+	- Begin by texture path (N, S, E, W)
+	- Then some rgb data for ceiling and floor
+	- Empty lines can be found between those datas
+	- Map architecture
+- Map :
+	- Must be surrounded by '1'
+	- Only one player spawn (N, S, E or W indicate player orientation)
 
 Strategy use for map checking : for every rows and colums (x and y)
-- start with skip white spaces
-- then we have to hit a wall
-- we skip all char except wall (1) until white space or \0
-- if the char in pos - 1 is not a wall, it's an error
-- the fact is if we hit a wall we have to found another one, walls works by pair. If the second wall was not hit, row (or column) is false
+- Start with skip white spaces
+- Then we have to hit a wall
+- We skip all char except wall (1) until white space or \0
+- If the char in pos - 1 is not a wall, it's an error
+- The fact is if we hit a wall we have to found another one, walls works by pair. If the second wall was not hit, row (or column) is false
 
 During this check, we extract the higher x and y to reformat_map, using white_spaces to reformat and put every lines ar the same length.
 
