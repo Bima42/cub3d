@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:47:24 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/15 16:30:22 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/20 19:34:08 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,6 @@ void	exit_n_display(char *str)
 void	destroy_struct(t_game *game, char *str)
 {
 	free_map(game, game->map);
-	free(game->text->no->path);
-	free(game->text->so->path);
-	free(game->text->ea->path);
-	free(game->text->we->path);
-	free(game->text->ceiling->path);
-	free(game->text->floor->path);
 	free(game->text->no);
 	free(game->text->so);
 	free(game->text->ea);

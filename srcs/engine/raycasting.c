@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:32:00 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/15 15:53:34 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/20 19:36:48 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ void	digital_differential_analyzer(t_game *game)
 		&& game->map_pos_y > 0 && game->map_pos_y < game->map_h
 		&& game->map[game->map_pos_y][game->map_pos_x] != '1')
 	{
+		if (game->map[game->map_pos_y][game->map_pos_x] == 'Q')
+		{
+			game->flag_exit = 1;
+			break ;
+		}
 		game->rays.hit_x += game->rays.step_x;
 		game->rays.hit_y += game->rays.step_y;
 		game->map_pos_x = game->rays.hit_x / (int)TILE;
@@ -86,6 +91,7 @@ void	raycasting(t_game *game)
 	while (game->column < WIN_W)
 	{
 		game->flag_hori = 0;
+		game->flag_exit = 0;
 		while (game->rays.ang >= 360)
 			game->rays.ang -= 360;
 		while (game->rays.ang < 0)

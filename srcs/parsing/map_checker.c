@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:44:22 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/14 12:20:20 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/20 18:45:29 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ int	check_map(char **map, t_game *game, t_parse *control)
 		return (0);
 	if (!control_axis_y(map, 0, max_x))
 		return (0);
-	if (!find_player_pos(map, game, control) || control->spawn != 1)
+	if (!find_player_pos(map, game, control) || control->spawn != 1
+		|| control->exit != 1)
 		return (0);
 	get_player_infos(game);
 	return (1);

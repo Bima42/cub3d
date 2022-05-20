@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:31:54 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/16 12:03:32 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/20 19:22:20 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ void	move_if_allowed(t_game *game)
 	new_map_y = game->p.next_y / (int)TILE;
 	if (game->map[new_map_y][new_map_x] != WALL)
 	{
+		if (game->map[new_map_y][new_map_x] == 'Q')
+		{
+			destroy_struct(game, "END\n");
+			exit(0);
+		}
 		game->p.x = game->p.next_x;
 		game->p.y = game->p.next_y;
 	}

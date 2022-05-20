@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:31:37 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/16 12:13:56 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/20 18:06:09 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ unsigned int	get_pixel(t_texture *tex, int x, int y)
 
 void	draw_wall(t_game *game)
 {
-	if (game->text->wall == game->text->so
+	if (game->flag_exit == 1)
+		game->text->wall = game->text->exit;
+	else if (game->text->wall == game->text->so
 		|| game->text->wall == game->text->we)
 		game->rays.text_x = WALL_RES - game->rays.text_x;
 	while (game->start < game->end)

@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 12:24:11 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/16 12:24:13 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/20 17:53:22 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	init_parse(t_parse *control)
 {
 	control->fd = 0;
 	control->spawn = 0;
+	control->exit = 0;
 	control->wall_err = 0;
 	control->path_err = 0;
 	control->id_err = 0;

@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+	   +#+        */
 /*	                                            +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 12:08:05 by tpauvret	      #+#    #+#             */
-/*   Updated: 2022/05/16 12:23:35 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/20 19:38:43 by tpauvret         ###   ########.fr       */
 /*	                                                                        */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ typedef struct s_texture_pack
 	struct s_texture	*wall;
 	struct s_texture	*ceiling;
 	struct s_texture	*floor;
+	struct s_texture	*exit;
 }			t_texture_pack;
 
 typedef struct s_texture
@@ -134,6 +135,7 @@ typedef struct s_parse
 {
 	int	fd;
 	int	spawn;
+	int	exit;
 	int	wall_err;
 	int	path_err;
 	int	id_err;
@@ -145,11 +147,14 @@ typedef struct s_game
 	char			**map;
 	int				column;
 	int				flag_hori;
+	int				flag_exit;
 	void			*mlx;
 	int				map_pos_x;
 	int				map_pos_y;
 	int				map_w;
 	int				map_h;
+	int				exit_x;
+	int				exit_y;
 	int				start;
 	int				end;
 	double			h_res;
@@ -165,96 +170,97 @@ typedef struct s_game
 }			t_game;
 
 //PARSING - parsing.c
-int		parsing(char *path, t_game *game);
-void	init_parse(t_parse *control);
-int		error_message(char *msg, int ret);
+int			parsing(char *path, t_game *game);
+void		init_parse(t_parse *control);
+int			error_message(char *msg, int ret);
 
 //PARSING - collect_map.c
-void	realloc_string(char **map, int row, int len);
-char	**format_map(char **map);
-char	**alloc_n_fill_array(char **tab);
-int		init_collect(int *row, char ***tmp, char ***tab, char *line);
-char	**collect_map(char *line, int fd);
+void		realloc_string(char **map, int row, int len);
+char		**format_map(char **map);
+char		**alloc_n_fill_array(char **tab);
+int			init_collect(int *row, char ***tmp, char ***tab, char *line);
+char		**collect_map(char *line, int fd);
 
 //PARSING - file_format.c
-int		check_file_format(char *str, char *str2, int start);
-int		file_format(char *path, t_parse *control);
-int		check_texture_format(t_game *game);
+int			check_file_format(char *str, char *str2, int start);
+int			file_format(char *path, t_parse *control);
+int			check_texture_format(t_game *game);
 
 //PARSING - game_infos.c
-int		check_all_datas(t_game *game);
-int		first_wall_line(char *line);
-int		collect_data(char *l, t_game *game);
-int		game_infos(t_game *game, t_parse *control);
+int			check_all_datas(t_game *game);
+int			first_wall_line(char *line);
+int			collect_data(char *l, t_game *game, int i);
+int			game_infos(t_game *game, t_parse *control);
 
 //PARSING - tools.c
-int		is_w_space(char c);
-void	skip_white_space(char *str, int *i);
-void	vertical_skip_white_space(char **str, int *i, int x);
-void	free_map(t_game *game, char **map);
-void	dup_array(char **tab, char **tmp);
+int			is_w_space(char c);
+void		skip_white_space(char *str, int *i);
+void		vertical_skip_white_space(char **str, int *i, int x);
+void		free_map(t_game *game, char **map);
+void		dup_array(char **tab, char **tmp);
 
 //PARSING - map_checker.c
-int		control_axis_x(char **map, int y, int max_y);
-int		control_axis_x(char **map, int x, int max_x);
-void	get_max(char **map, int *max_y, int *max_x);
-int		check_map(char **map, t_game *game, t_parse *control);
+int			control_axis_x(char **map, int y, int max_y);
+int			control_axis_x(char **map, int x, int max_x);
+void		get_max(char **map, int *max_y, int *max_x);
+int			check_map(char **map, t_game *game, t_parse *control);
 
 //PARSING - player.c
-void	get_player_infos(t_game *game);
-int		find_player_pos(char **map, t_game *game, t_parse *control);
+void		get_player_infos(t_game *game);
+int			find_player_pos(char **map, t_game *game, t_parse *control);
+void		find_exit_pos(char **map, t_game *game, t_parse *control);
 
 //INIT - init.c
-void	init_texture_pk_dir(t_game *game);
-void	init_texture_pk_dir_next(t_game *game);
-void	set_texture_pack(t_game *game);
-void	init_game(t_game *game);
+t_texture	*init_texture(void);
+void		set_texture_pack(t_game *game);
+void		init_game(t_game *game);
 
 //MAIN - main.c
-void	exit_n_display(char *str);
-void	destroy_struct(t_game *game, char *str);
+void		exit_n_display(char *str);
+void		destroy_struct(t_game *game, char *str);
 
 //VIDEO - video_init.c
-void	load_tex(t_game *game);
-void	load_tex_bis(t_game *game);
-void	check_dim(t_game *game);
-int		video_init(t_game *game);
+void		load_tex(t_game *game);
+void		load_tex_bis(t_game *game);
+void		load_tex_next(t_game *game);
+void		check_dim(t_game *game);
+int			video_init(t_game *game);
 
 //VIDEO - window_init.c
-void	init_graphics(t_game *game);
-void	window_init(t_game *game);
+void		init_graphics(t_game *game);
+void		window_init(t_game *game);
 
 //MAIN - hooks.c
-void	set_hooks(t_game *game);
-int		pressed(int keycode, t_keys *keys);
-int		released(int keycode, t_keys *keys);
+void		set_hooks(t_game *game);
+int			pressed(int keycode, t_keys *keys);
+int			released(int keycode, t_keys *keys);
 
 //ENGINE - engine.c
-void	create_image(t_game *game);
-void	draw_background(t_game *game);
-int		engine(t_game *game);
+void		create_image(t_game *game);
+void		draw_background(t_game *game);
+int			engine(t_game *game);
 
 //ENGINE - raycasting.c
-void	digital_differential_analyzer(t_game *game);
-double	vertical_raycasting(t_game *game);
-double	horizontal_raycasting(t_game *game);
-void	raycasting(t_game *game);
+void		digital_differential_analyzer(t_game *game);
+double		vertical_raycasting(t_game *game);
+double		horizontal_raycasting(t_game *game);
+void		raycasting(t_game *game);
 
 //ENGINE - engine_tools.c
-double	deg_to_rad(double value);
-double	square(double value);
-void	put_pixel(t_img *img, int x, int y, int color);
-void	define_color(t_texture *color, t_texture *zone);
-int		color_picker(unsigned char red,
-			unsigned char green, unsigned char blue);
+double		deg_to_rad(double value);
+double		square(double value);
+void		put_pixel(t_img *img, int x, int y, int color);
+void		define_color(t_texture *color, t_texture *zone);
+int			color_picker(unsigned char red,
+				unsigned char green, unsigned char blue);
 
 //ENGINE - motion.c
-void	move_if_allowed(t_game *game);
-void	player_rotation(t_game *game);
-void	player_move(t_game *game);
+void		move_if_allowed(t_game *game);
+void		player_rotation(t_game *game);
+void		player_move(t_game *game);
 
 //ENGINE - draw.c
-void	draw_wall(t_game *game);
-void	draw(t_game *game);
+void		draw_wall(t_game *game);
+void		draw(t_game *game);
 
 #endif

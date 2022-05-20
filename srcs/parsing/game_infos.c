@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:44:15 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/14 12:34:34 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/20 18:11:08 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	check_all_datas(t_game *game)
 		&& game->text->so->path
 		&& game->text->we->path
 		&& game->text->ea->path
+		&& game->text->exit->path
 		&& game->text->ceiling->path
 		&& game->text->floor->path)
 		return (1);
@@ -42,11 +43,8 @@ int	first_wall_line(char *line)
 	return (0);
 }
 
-int	collect_data(char *l, t_game *game)
+int	collect_data(char *l, t_game *game, int i)
 {
-	int	i;
-
-	i = 0;
 	if (!l)
 		return (0);
 	while (l[i] != 32)
@@ -59,6 +57,8 @@ int	collect_data(char *l, t_game *game)
 		game->text->ea->path = ft_substr(l, i + 1, ft_strlen(l) - i);
 	else if (!ft_strncmp(l, "WE", i) && game->text->we->path == NULL)
 		game->text->we->path = ft_substr(l, i + 1, ft_strlen(l) - i);
+	else if (!ft_strncmp(l, "EX", i) && game->text->exit->path == NULL)
+		game->text->exit->path = ft_substr(l, i + 1, ft_strlen(l) - i);
 	else if (!ft_strncmp(l, "C", i)
 		&& game->text->ceiling->path == NULL)
 		game->text->ceiling->path
@@ -84,7 +84,7 @@ int	game_infos(t_game *game, t_parse *control)
 		}
 		if (first_wall_line(line))
 			break ;
-		if (!collect_data(line, game))
+		if (!collect_data(line, game, 0))
 			return (0);
 		free(line);
 		line = get_next_line(control->fd);
