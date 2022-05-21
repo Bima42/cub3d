@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 12:24:11 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/20 17:53:22 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/21 23:14:09 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	check_data(t_texture_pack *pack, t_texture *texture, int count)
 	if (texture->b < 0 || texture->b > 255)
 		return (0);
 	free_array(split);
-	return (check_data(pack, pack->floor, ++count));
+	return (check_data(pack, &pack->floor, ++count));
 }
 
 int	parsing(char *path, t_game *game)
@@ -65,7 +65,7 @@ int	parsing(char *path, t_game *game)
 		return (error_message("File format error. Use .cub maps only\n", 0));
 	if (!game_infos(game, &control))
 		return (error_message("Check data format and try again\n", 0));
-	if (!check_data(game->text, game->text->ceiling, 0))
+	if (!check_data(&game->text, &game->text.ceiling, 0))
 		return (error_message("Data error: check format and try again\n", 0));
 	if (!check_map(game->map, game, &control))
 		return (error_message("Map error: make sure your map is valid\n", 0));

@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:44:15 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/20 18:11:08 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/21 22:29:03 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	check_all_datas(t_game *game)
 {
-	if (game->text->no->path
-		&& game->text->so->path
-		&& game->text->we->path
-		&& game->text->ea->path
-		&& game->text->exit->path
-		&& game->text->ceiling->path
-		&& game->text->floor->path)
+	if (game->text.no.path
+		&& game->text.so.path
+		&& game->text.we.path
+		&& game->text.ea.path
+		&& game->text.exit.path
+		&& game->text.ceiling.path
+		&& game->text.floor.path)
 		return (1);
 	return (0);
 }
@@ -49,22 +49,22 @@ int	collect_data(char *l, t_game *game, int i)
 		return (0);
 	while (l[i] != 32)
 		i++;
-	if (!ft_strncmp(l, "NO", i) && game->text->no->path == NULL)
-		game->text->no->path = ft_substr(l, i + 1, ft_strlen(l) - i);
-	else if (!ft_strncmp(l, "SO", i) && game->text->so->path == NULL)
-		game->text->so->path = ft_substr(l, i + 1, ft_strlen(l) - i);
-	else if (!ft_strncmp(l, "EA", i) && game->text->ea->path == NULL)
-		game->text->ea->path = ft_substr(l, i + 1, ft_strlen(l) - i);
-	else if (!ft_strncmp(l, "WE", i) && game->text->we->path == NULL)
-		game->text->we->path = ft_substr(l, i + 1, ft_strlen(l) - i);
-	else if (!ft_strncmp(l, "EX", i) && game->text->exit->path == NULL)
-		game->text->exit->path = ft_substr(l, i + 1, ft_strlen(l) - i);
+	if (!ft_strncmp(l, "NO", i) && game->text.no.path == NULL)
+		game->text.no.path = ft_substr(l, i + 1, ft_strlen(l) - i);
+	else if (!ft_strncmp(l, "SO", i) && game->text.so.path == NULL)
+		game->text.so.path = ft_substr(l, i + 1, ft_strlen(l) - i);
+	else if (!ft_strncmp(l, "EA", i) && game->text.ea.path == NULL)
+		game->text.ea.path = ft_substr(l, i + 1, ft_strlen(l) - i);
+	else if (!ft_strncmp(l, "WE", i) && game->text.we.path == NULL)
+		game->text.we.path = ft_substr(l, i + 1, ft_strlen(l) - i);
+	else if (!ft_strncmp(l, "EX", i) && game->text.exit.path == NULL)
+		game->text.exit.path = ft_substr(l, i + 1, ft_strlen(l) - i);
 	else if (!ft_strncmp(l, "C", i)
-		&& game->text->ceiling->path == NULL)
-		game->text->ceiling->path
+		&& game->text.ceiling.path == NULL)
+		game->text.ceiling.path
 			= ft_substr(l, i + 1, ft_strlen(l) - i);
-	else if (!ft_strncmp(l, "F", i) && game->text->floor->path == NULL)
-		game->text->floor->path = ft_substr(l, i + 1, ft_strlen(l) - i);
+	else if (!ft_strncmp(l, "F", i) && game->text.floor.path == NULL)
+		game->text.floor.path = ft_substr(l, i + 1, ft_strlen(l) - i);
 	else
 		return (0);
 	return (1);

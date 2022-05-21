@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:44:09 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/20 18:09:18 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/21 22:28:49 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,20 @@ int	check_texture_format(t_game *game)
 {
 	int	size;
 
-	size = ft_strlen(game->text->no->path);
-	if (check_file_format(game->text->no->path, ".xpm", size - 4))
+	size = ft_strlen(game->text.no.path);
+	if (check_file_format(game->text.no.path, ".xpm", size - 4))
 		return (0);
-	size = ft_strlen(game->text->so->path);
-	if (check_file_format(game->text->so->path, ".xpm", size - 4))
+	size = ft_strlen(game->text.so.path);
+	if (check_file_format(game->text.so.path, ".xpm", size - 4))
 		return (0);
-	size = ft_strlen(game->text->ea->path);
-	if (check_file_format(game->text->ea->path, ".xpm", size - 4))
+	size = ft_strlen(game->text.ea.path);
+	if (check_file_format(game->text.ea.path, ".xpm", size - 4))
 		return (0);
-	size = ft_strlen(game->text->we->path);
-	if (check_file_format(game->text->we->path, ".xpm", size - 4))
+	size = ft_strlen(game->text.we.path);
+	if (check_file_format(game->text.we.path, ".xpm", size - 4))
 		return (0);
-	size = ft_strlen(game->text->exit->path);
-	if (check_file_format(game->text->exit->path, ".xpm", size - 4))
+	size = ft_strlen(game->text.exit.path);
+	if (check_file_format(game->text.exit.path, ".xpm", size - 4))
 		return (0);
 	return (1);
 }

@@ -6,32 +6,53 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:31:37 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/20 18:06:09 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/05/21 23:14:55 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-unsigned int	get_pixel(t_texture *tex, int x, int y)
+unsigned int	get_pixel(t_texture tex, int x, int y)
 {
 	char	*dst;
 
-	dst = tex->img.addr + (y * tex->img.linelen + x * (tex->img.bpp / 8));
+	dst = tex.img.addr + (y * tex.img.linelen + x * (tex.img.bpp / 8));
 	return (*(unsigned int *)dst);
+}
+
+void	draw_background(t_game *game)
+{
+	int				x;
+	int				y;
+	t_texture		color;
+
+	y = -1;
+	color.r = 0;
+	color.g = 0;
+	color.b = 0;
+	define_color(&color, &game->text.ceiling);
+	while (++y < WIN_H)
+	{
+		x = -1;
+		if (y == WIN_H / 2)
+			define_color(&color, &game->text.floor);
+		while (++x < WIN_W)
+			put_pixel(game->img, x, y, color_picker(color.r, color.g, color.b));
+	}
 }
 
 void	draw_wall(t_game *game)
 {
 	if (game->flag_exit == 1)
-		game->text->wall = game->text->exit;
-	else if (game->text->wall == game->text->so
-		|| game->text->wall == game->text->we)
+		game->text.wall = game->text.exit;
+	else if (game->text.wall.path == game->text.so.path
+		|| game->text.wall.path == game->text.we.path)
 		game->rays.text_x = WALL_RES - game->rays.text_x;
 	while (game->start < game->end)
 	{
 		game->rays.text_y = WALL_RES / game->rays.length
 			* (game->start - game->p.height + game->rays.length / 2);
-		game->color = get_pixel(game->text->wall,
+		game->color = get_pixel(game->text.wall,
 				game->rays.text_x, game->rays.text_y);
 		put_pixel(game->img, game->column, game->start, game->color);
 		game->start++;
@@ -52,17 +73,17 @@ void	draw(t_game *game)
 	{
 		game->rays.text_x = fmod(game->rays.h_hit_x, TILE);
 		if (game->rays.ang > EAST && game->rays.ang < WEST)
-			game->text->wall = game->text->so;
+			game->text.wall = game->text.so;
 		else
-			game->text->wall = game->text->no;
+			game->text.wall = game->text.no;
 	}
 	else
 	{
 		game->rays.text_x = fmod(game->rays.v_hit_y, TILE);
 		if (game->rays.ang >= NORTH && game->rays.ang <= SOUTH)
-			game->text->wall = game->text->ea;
+			game->text.wall = game->text.ea;
 		else
-			game->text->wall = game->text->we;
+			game->text.wall = game->text.we;
 	}
 	draw_wall(game);
 }
