@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 12:24:11 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/21 23:14:09 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/06/08 14:18:36 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ int	parsing(char *path, t_game *game)
 		return (error_message("File format error. Use .cub maps only\n", 0));
 	if (!game_infos(game, &control))
 		return (error_message("Check data format and try again\n", 0));
-	if (!check_data(&game->text, &game->text.ceiling, 0))
-		return (error_message("Data error: check format and try again\n", 0));
 	if (!check_map(game->map, game, &control))
 		return (error_message("Map error: make sure your map is valid\n", 0));
+	if (!check_data(&game->text, &game->text.ceiling, 0))
+		return (error_message("Data error: check format and try again\n", 0));
 	if (!check_texture_format(game))
 		return (error_message("Texture error: textures need .xpm format\n", 0));
 	game->ratio = TILE * ((WIN_W / 2) / tan(deg_to_rad(FOV / 2)));
