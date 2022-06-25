@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:50:04 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/05/21 23:15:46 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/06/25 18:54:12 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	init_game(t_game *game)
 {
+	game->mlx = mlx_init();
 	ft_bzero(&game->text.no, sizeof(t_texture));
 	ft_bzero(&game->text.so, sizeof(t_texture));
 	ft_bzero(&game->text.ea, sizeof(t_texture));

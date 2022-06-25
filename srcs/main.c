@@ -6,7 +6,7 @@
 /*   By: tpauvret <tpauvret@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:47:24 by tpauvret          #+#    #+#             */
-/*   Updated: 2022/06/08 14:08:54 by tpauvret         ###   ########.fr       */
+/*   Updated: 2022/06/25 18:54:02 by tpauvret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	game.mlx = mlx_init();
 	if (argc == 2)
 	{
 		init_game(&game);
