@@ -7,8 +7,10 @@ Only C was allowed.
 ```
 git clone git@github.com:Bima42/cub3d.git
 make
-./cub3d map.cub
+./cub3d maps/map.cub
 ```
+
+![cub3d](/assets/cub3d.gif)
 
 Note : Use W, A, S, D key to move. Use left and right arrow to rotate camera. Esc quit the game.
 
