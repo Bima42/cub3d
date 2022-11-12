@@ -1,24 +1,34 @@
 # cub3d
-The problematic was : re-create a Wolfenstein-3D like, using the MLX library. 
-Only C was allowed.
+- [1. Get Started](#get-started)
+- [2. Resume](#resume)
+- [3. Parsing](#parsing)
+- [4. Raycasting](#raycasting)
+- [5. Sources](#sources)
 
-## Install
+# Get Started
+- Implement raycasting in a simple video game
 
 ```
 git clone git@github.com:Bima42/cub3d.git
+```
+```
 make
+```
+```
 ./cub3d maps/map.cub
 ```
 
 ![cub3d](/assets/cub3d.gif)
 
-Note : Use W, A, S, D key to move. Use left and right arrow to rotate camera. Esc quit the game.
+- Note : Use W, A, S, D key to move. Use left and right arrow to rotate camera. Esc quit the game.
 
-## Resume
+- Find my generator [here](https://github.com/Bima42/cub3d_map_generator)
+
+# Resume
 At the beginning, we decided to treat parsing part before talk about raycasting etc
 Then, we split works in two parts : initialisation part (graphics, mlx ...) and raycasting part
 
-## Parsing
+# Parsing
 There is some important point to note :
 - Map file is .cub only
 - This map file is strict :
@@ -41,7 +51,7 @@ During this check, we extract the higher x and y to reformat_map, using white_sp
 
 Last line is filled with \0.
 	
-## Raycasting
+# Raycasting
 Transforming a limited form of data into a three-dimensional projection with the help of tracing rays from the view point into the viewing volume. 
 Main principle :  rays can be cast and traced in groups based on certain geometric constraints.
 A ray from the pixel through the camera is obtained and the intersection of all objects in the picture is computed.
@@ -78,6 +88,6 @@ Now you know which side of the wall you have to drawn.
 This way will show distortion called "fish-eye".
 To remove the viewing distortion : ```correct_dist = distorted_dist * cos(angle);```
 
-## Sources
+# Sources
 - https://permadi.com/1996/05/ray-casting-tutorial-3/#CREATING%20A%20WORLD
 - https://guy-grave.developpez.com/tutoriels/jeux/doom-wolfenstein-raycasting/
